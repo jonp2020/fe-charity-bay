@@ -1,3 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.header {
+  color: #99582a;
+  font-style: italic;
+  background-color: #ccd5ae;
+  font-size: 30px;
+  padding: 1em;
+}
+.header h1 {
+  font-family: "Lobster Two", cursive;
+}
+.individualItem-container {
+  font-family: "Roboto", sans-serif;
 }
