@@ -6,17 +6,31 @@ class IndividualItem extends Component {
     isLoading: true,
   };
   componentDidMount() {}
-  componentDidUpdate() {}
+	componentDidUpdate() {}
+	
+	handleChange = (event) => {
+		console.log(event.target)
+	}
   render() {
     return (
       <section className="individualItem-container">
-        <div>
-          <img src="https://charity-images.s3.eu-west-2.amazonaws.com/1604415525859.jpg"></img>
+        <div className="individualItem-card">
 
-          <h4>Toys Games</h4>
-          <h5>Chess Set</h5>
-          <h6>Manchester</h6>
-          <p>10£ </p>
+          <img className="individualItem-item-image" src="http://placehold.it/300x300" alt="individual-item"></img>
+					{/* <div className="individualItem-table-container"> */}
+					{/* <div className="individualItem-category">
+					<p className="individualItem-category">Electronics</p>
+					</div> */}
+          
+          <p className="individualItem-name">Chess Set</p>
+          <p className="individualItem-location">Location: <strong>Manchester</strong></p>
+					<p className="individualItem-sellerUsername">Seller: LisaSmith</p>
+					<div className="individualItem-price" onClick={this.handleChange}>
+          <p className="individualItem-price-amount">£10</p>
+					<p className="individualItem-price-text">Donate now</p>
+					{/* </div> */}
+					</div>
+
           <p>
             Description text. At vero eos et accusamus et iusto odio dignissimos
             ducimus qui blanditiis praesentium voluptatum deleniti atque
@@ -25,9 +39,9 @@ class IndividualItem extends Component {
           </p>
         </div>
         <div>
-          <p>Money for this item donated to Age Concern</p>
+          <p>Money for this item will be donated to Age Concern</p>
         </div>
-        <button>Click to buy and donate</button>
+        <button className="donate-btn">Click to buy and donate</button>
       </section>
     );
   }

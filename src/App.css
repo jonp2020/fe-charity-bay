@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
 .App {
   text-align: center;
@@ -13,11 +14,103 @@
   font-style: italic;
   background-color: #ccd5ae;
   font-size: 30px;
-  padding: 1em;
+  padding: 1rem;
 }
 .header h1 {
   font-family: "Lobster Two", cursive;
 }
 .individualItem-container {
   font-family: "Roboto", sans-serif;
+}
+
+.individualItem-card {
+  margin: 2em;
+}
+
+.individualItem-item-image {
+  width: 300px;
+  height: 300px;
+}
+
+@media only screen and (max-width: 330px) {
+  .individualItem-item-image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.individualItem-item-image {
+}
+
+.individualItem-name {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+.individualItem-location {
+}
+
+.individualItem-sellerUsername {
+}
+
+.individualItem-price {
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #ccd5ae;
+  transition: 0.3s ease-in;
+  margin: 0.7rem;
+  padding: 0.4rem;
+}
+
+.individualItem-price:hover {
+  background-color: #d4a373;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.individualItem-price-amount {
+  font-size: 2.1rem;
+}
+
+.individualItem-price {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.individualItem-name {
+  font-weight: bold;
+}
+
+.individualItem-sellerUsername {
+  font-weight: bold;
+}
+
+.footer-container {
+  background-color: #d4a373;
+}
+
+.project-title-footer {
+  font-family: "Lobster Two", cursive;
+  font-style: italic;
+  color: #ffffff;
+}
+
+.donate-btn {
+  background-color: #ccd5ae;
+  margin: 1em;
+  border-radius: 12px;
+  padding: 0.8em;
+  border: none;
+  transition: 0.3s ease-in;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.donate-btn:hover {
+  background-color: #d4a373;
+  color: #ffffff;
+}
+
+.donate-btn:focus {
+  outline: none;
 }
