@@ -62,14 +62,13 @@
   padding: 0.4rem;
 }
 
-.individualItem-price:hover {
-  background-color: #d4a373;
-  color: #ffffff;
-  cursor: pointer;
-}
-
 .individualItem-price-amount {
+  background-color: #d4a373;
   font-size: 2.1rem;
+  display: inline-block;
+  margin: 0.7rem;
+  border-radius: 12px;
+  padding: 0.7rem;
 }
 
 .individualItem-price {
@@ -113,4 +112,102 @@
 
 .donate-btn:focus {
   outline: none;
+}
+
+.wrapping {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 40px;
+  margin-bottom: 1rem;
+}
+
+.wrapping > p:last-child {
+  grid-column: 2;
+  grid-row: 1/2;
+  align-self: start;
+}
+
+/* @media only screen and (min-width: 800px) {
+  .individualItem-container {
+    display: flex;
+  }
+} */
+
+@media only screen and (min-width: 800px) {
+  .individualItem-card {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: auto;
+  }
+
+  .individualItem-item-image {
+    display: flex;
+  }
+
+  .wrapping {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+  .wrapping p {
+    align-self: flex-start;
+    margin: 0.5rem 0;
+  }
+
+  .individualItem-desktop-description {
+    margin: 2rem 25rem 2rem 25rem;
+  }
+  .individualItem-desktop-info {
+    margin: 2rem 0 2rem 0;
+  }
+}
+
+.itemsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.itemsListDiv p {
+  text-align: start;
+}
+
+.itemsListDiv :nth-child(2) {
+  font-weight: bold;
+}
+
+.itemsListPrice p {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* .itemsList picture {
+  justify-self: start;
+}
+
+.itemsList div {
+  justify-self: start;
+} */
+
+.navigationButtons {
+  display: flex;
+  margin: 1rem;
+  justify-content: center;
+}
+
+.navigationButtons button {
+  margin: 0 1rem;
+  padding: 0.5rem;
+  background-color: #faedcd;
+  border: none;
+  border-radius: 12px;
+}
+
+.navigationButtons button:hover {
+  background-color: #d4a373;
 }

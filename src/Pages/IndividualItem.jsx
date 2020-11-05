@@ -21,26 +21,21 @@ class IndividualItem extends Component {
 					{/* <div className="individualItem-category">
 					<p className="individualItem-category">Electronics</p>
 					</div> */}
-          
+          <div className="wrapping">
           <p className="individualItem-name">Chess Set</p>
           <p className="individualItem-location">Location: <strong>Manchester</strong></p>
 					<p className="individualItem-sellerUsername">Seller: LisaSmith</p>
-					<div className="individualItem-price" onClick={this.handleChange}>
           <p className="individualItem-price-amount">£10</p>
-					<p className="individualItem-price-text">Donate now</p>
 					{/* </div> */}
-					</div>
-
-          <p>
+         </div> 
+         </div>
+          <p className="individualItem-desktop-description">
             Description text. At vero eos et accusamus et iusto odio dignissimos
             ducimus qui blanditiis praesentium voluptatum deleniti atque
             corrupti quos dolores et quas molestias excepturi sint occaecati
             cupiditate non mollitia animi, id est laborum et dolo
           </p>
-        </div>
-        <div>
-          <p>Money for this item will be donated to Age Concern</p>
-        </div>
+          <p className="individualItem-desktop-info">Money for this item will be donated to Age Concern</p>
         <button className="donate-btn">Click to buy and donate</button>
       </section>
     );
