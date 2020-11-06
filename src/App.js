@@ -5,6 +5,8 @@ import IndividualItem from "./Pages/IndividualItem";
 import LandingPage from "./Pages/LandingPage";
 import About from "./Pages/About";
 import { Router } from "@reach/router";
+import Purchase from "./Pages/Purchase";
+
 function App() {
   return (
     <div className="App">
@@ -14,6 +16,7 @@ function App() {
           <LandingPage path="/" />
           <IndividualItem path="/item/:item_id" />
           <About path="/about" />
+          <Purchase path="/purchase/:item_id" />
         </Router>
       </div>
       <Footer />

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
+
 
 class IndividualItem extends Component {
   state = {
@@ -49,7 +51,9 @@ class IndividualItem extends Component {
         <p className="individualItem-desktop-info">
           Money for this item will be donated to <strong>Age Concern</strong>
         </p>
+        <Link className="donate-btn" to={`/purchase/${item.item_id}`}>
         <button className="donate-btn">Click to buy and donate</button>
+        </Link>
       </section>
     );
   }
