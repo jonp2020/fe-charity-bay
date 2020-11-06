@@ -5,9 +5,11 @@
   box-sizing: border-box;
 }
 .App {
+  display: flex;
+  flex-flow: column;
+  align-content: stretch;
   text-align: center;
-  margin: 0;
-  padding: 0;
+  min-height: 100vh;
 }
 .header {
   color: #99582a;
@@ -19,6 +21,11 @@
 .header h1 {
   font-family: "Lobster Two", cursive;
 }
+
+.central-area {
+  flex: 1;
+}
+
 .individualItem-container {
   font-family: "Roboto", sans-serif;
 }
@@ -30,6 +37,7 @@
 .individualItem-item-image {
   width: 300px;
   height: 300px;
+  border-radius: 12px;
 }
 
 @media only screen and (max-width: 330px) {
@@ -96,18 +104,23 @@
 
 .donate-btn {
   background-color: #ccd5ae;
-  margin: 1em;
+  margin: 1em 0 2rem 0;
   border-radius: 12px;
-  padding: 0.8em;
+  padding: 0.8rem;
   border: none;
-  transition: 0.3s ease-in;
+  transition: all 0.3s ease 0s;
   font-weight: bold;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
   cursor: pointer;
 }
 
 .donate-btn:hover {
-  background-color: #d4a373;
   color: #ffffff;
+  background-color: #d4a373;
+  box-shadow: 0px 15px 20px rgba(204, 213, 174, 0.4);
+  color: #fff;
+  transform: translateY(-3px);
 }
 
 .donate-btn:focus {
@@ -127,12 +140,6 @@
   align-self: start;
 }
 
-/* @media only screen and (min-width: 800px) {
-  .individualItem-container {
-    display: flex;
-  }
-} */
-
 @media only screen and (min-width: 800px) {
   .individualItem-card {
     display: flex;
@@ -143,6 +150,7 @@
 
   .individualItem-item-image {
     display: flex;
+    border-radius: 12px;
   }
 
   .wrapping {
@@ -156,13 +164,15 @@
     align-self: flex-start;
     margin: 0.5rem 0;
   }
-
   .individualItem-desktop-description {
-    margin: 2rem 25rem 2rem 25rem;
+    margin: 2rem 10rem;
   }
-  .individualItem-desktop-info {
-    margin: 2rem 0 2rem 0;
-  }
+}
+.individualItem-desktop-description {
+  margin: 2rem 1.5rem;
+}
+.individualItem-desktop-info {
+  margin: 2rem 1.5rem;
 }
 
 .itemsList {
@@ -170,29 +180,38 @@
   grid-template-columns: 1fr 1fr 1fr;
   margin: 2rem 0;
   justify-content: center;
+  align-items: center;
 }
 
-.itemsListDiv p {
+@media only screen and (min-width: 800px) {
+  .itemsList {
+    grid-template-columns: 300px 200px 300px;
+    margin: 2rem 5rem;
+  }
+}
+
+.itemsListTitle p {
   text-align: start;
+  text-decoration: none;
+  color: #000;
+  margin: 0.2rem 0;
 }
 
-.itemsListDiv :nth-child(2) {
+.itemsListTitle :nth-child(2) {
   font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  margin: 0.2rem 0;
 }
 
-.itemsListPrice p {
+.itemsListPrice {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  text-decoration: none;
+  color: #000;
+  margin: 0.2rem 0;
 }
-
-/* .itemsList picture {
-  justify-self: start;
-}
-
-.itemsList div {
-  justify-self: start;
-} */
 
 .navigationButtons {
   display: flex;
@@ -206,8 +225,41 @@
   background-color: #faedcd;
   border: none;
   border-radius: 12px;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .navigationButtons button:hover {
   background-color: #d4a373;
+  box-shadow: 0px 15px 20px rgba(204, 213, 174, 0.4);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Footer styling */
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.7rem;
+}
+
+.footer-container {
+  color: white;
+  text-decoration: none;
+  font-style: none;
+}
+
+.footer-container:hover {
+  color: #ccd5ae;
+}
+
+/* About us page styling */
+.about-us {
+  margin: 2rem;
+}
+
+.about-us p {
+  margin: 1rem;
 }
