@@ -4,8 +4,8 @@ import Footer from "./components/Footer";
 import IndividualItem from "./Pages/IndividualItem";
 import LandingPage from "./Pages/LandingPage";
 import About from "./Pages/About";
-import { Router } from "@reach/router";
 import Purchase from "./Pages/Purchase";
+import { Router } from "@reach/router";
 
 function App() {
   return (
