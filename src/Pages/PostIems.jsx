@@ -1,9 +1,62 @@
 import React, { Component } from "react";
-import {
-  RegionDropdown,
-} from "react-country-region-selector";
+import { RegionDropdown } from "react-country-region-selector";
+import Resizer from "react-image-file-resizer";
+import axios from "axios";
 class PostIems extends Component {
-  state = { country: "United Kingdom", region: "", category: "", image: null };
+  state = {
+    country: "United Kingdom",
+    charity: "",
+    region: "",
+    category: "",
+    file: null,
+    thumbnailImage: {},
+    fullsizeImage: {},
+    imagesSent: false,
+  };
+  /**************************image handling **************************/
+  resizeThumbnailFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        120,
+        120,
+        "JPEG",
+        80,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "base64"
+      );
+    });
+  resizeFullSizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        80,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "base64"
+      );
+    });
+  dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
+  /*********************************************** */
 
   selectRegion = (val) => {
     this.setState({ region: val });
@@ -16,13 +69,34 @@ class PostIems extends Component {
   handleImage = (e) => {
     e.preventDefault();
 
-    this.setState({ image: e.target.files[0] });
+    this.setState({ file: e.target.files[0] });
+  };
+  handleCharity = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    this.setState({ charity: value });
+  };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { country, charity, region, category, file } = this.state;
+  
+    if (!file) {
+      throw new Error("Select a file first!");
+    }
+    this.resizeThumbnailFile(file).then((res) => {
+      const newFile = this.dataURLtoFile(res, 'newImage.jpeg');
+     
+      const thumbnailForm = new FormData();
+     
+      thumbnailForm.append('file', newFile);
+    }).then(res => {
+    })
   };
   render() {
     return (
       <section>
         <h1>Post an Item</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col-25">
               <label htmlFor="title">Title</label>
@@ -96,54 +170,25 @@ class PostIems extends Component {
               />
             </div>
           </div>
-          <div className="item-charity">
-            <div>
-              <input type="radio" id="ageuk" name="ageuk" value="Age UK" />
-              <label htmlFor="ageuk">Age UK</label>
+          <div className="row">
+            <div className="col-25">
+              <label for="charity">Charity</label>
             </div>
-            <div>
-              <input type="radio" id="crisis" name="crisis" value="crisis" />
-              <label htmlFor="crisis">Crisis</label>
-            </div>
-          </div>
-          <div className="item-charity-2">
-            <div>
-              <input
-                type="radio"
-                id="redcross"
-                name="redcross"
-                value="British Red Cross"
-              />
-              <label htmlFor="male">British Red Cross</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="womenaid"
-                name="womenaid"
-                value="women's aid"
-              />
-              <label htmlFor="male">women's aid</label>
-            </div>
-          </div>
-          <div className="item-charity-2">
-            <div>
-              <input
-                type="radio"
-                id="faresahre"
-                name="faresahre"
-                value="FareShare"
-              />
-              <label htmlFor="faresahre">FareShare</label>
-              <br></br>
-            </div>
-            <div>
-              <input type="radio" id="nhs" name="nhs" value="nhs" />
-              <label htmlFor="nhs">NHS Charities Together</label>
-            </div>
-          </div>
+            <div className="col-75">
+              <select id="charity" name="charity" onChange={this.handleCharity}>
+                <option value="ageuk">Age UK</option>
+                <option value="crisis">Crisis</option>
+                <option value="women's aid">Women's Aid</option>
+                <option value="british red cross<">British Red Cross</option>
+                <option value="fareshare">FareShare</option>
 
-          <button className="donate-btn">Click to buy and donate</button>
+                <option value="NHS charities together">
+                  NHS Charities Together
+                </option>
+              </select>
+            </div>
+          </div>
+          <button>Submit</button>
         </form>
       </section>
     );
