@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {
-  CountryDropdown,
   RegionDropdown,
-  CountryRegionData,
 } from "react-country-region-selector";
 class PostIems extends Component {
   state = { country: "United Kingdom", region: "", category: "", image: null };
