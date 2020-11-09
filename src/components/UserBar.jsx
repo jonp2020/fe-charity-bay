@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { Link, navigate } from '@reach/router';
+import React, { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, navigate } from "@reach/router";
 
 export default function UserBar({ location }) {
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState();
 
   async function handleLogout() {
-    setError('');
+    setError("");
 
     try {
       await logout();
-      navigate('/login');
+      navigate("/login");
     } catch {
-      setError('Failed to log out');
+      setError("Failed to log out");
     }
   }
 
@@ -26,23 +26,32 @@ export default function UserBar({ location }) {
       </div>
     );
   }
-  if (location.pathname === '/signup') {
+  if (location.pathname === "/signup") {
     return (
       <div className="user-bar">
-        <Link to="/login">Log In</Link>
+        <Link className="user-bar-login-out" to="/login">
+          Log In
+        </Link>
       </div>
     );
   }
-  if (location.pathname === '/login') {
+  if (location.pathname === "/login") {
     return (
       <div className="user-bar">
-        <Link to="/signup">Sign Up</Link>
+        <Link className="user-bar-login-out" to="/signup">
+          Sign Up
+        </Link>
       </div>
     );
   }
   return (
     <div className="user-bar">
-      <Link to="/login">Log In</Link> <Link to="/signup">Sign Up</Link>
+      <Link className="user-bar-login-out" to="/login">
+        Log In
+      </Link>{" "}
+      <Link className="user-bar-login-out" to="/signup">
+        Sign Up
+      </Link>
     </div>
   );
 }

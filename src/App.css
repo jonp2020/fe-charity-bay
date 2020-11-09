@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
 .App {
@@ -16,23 +16,52 @@
   font-style: italic;
   background-color: #ccd5ae;
   font-size: 30px;
-  padding: 1rem;
   text-decoration: none;
 }
 .header h1 {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
 }
 
 .user-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #e9edc9;
+  /* width: 100vw; */
+  /* padding: 0.5rem 1rem; */
+  margin-top: 1rem;
 }
 
+.user-bar-login-out {
+  background-color: #d4a373;
+  font-size: 0.8rem;
+  font-style: normal;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+/* .user-bar-text {
+  color: red;
+} */
+.user-bar-login-out:link {
+  color: #000;
+}
+
+.user-bar-login-out:visited {
+  color: #000;
+}
+
+.user-bar-login-out:hover {
+  color: #faedcd;
+}
 .central-area {
   flex: 1;
 }
 
 .individualItem-container {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .individualItem-card {
@@ -102,7 +131,7 @@
 }
 
 .project-title-footer {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-style: italic;
   text-decoration: none;
   color: #ffffff;
