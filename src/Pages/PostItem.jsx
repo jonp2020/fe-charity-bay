@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { RegionDropdown } from 'react-country-region-selector';
 import Resizer from 'react-image-file-resizer';
 import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
+// import { useAuth } from '../contexts/AuthContext';
 
 class PostItem extends Component {
   state = {
@@ -120,8 +120,6 @@ class PostItem extends Component {
         }),
       ]).then(([thumbnailImage, fullsizeImage]) => {
         return Promise.all([thumbnailImage, fullsizeImage]);
-        axios.get('http://localhost:9090/api/users/user/');
-        console.log(thumbnailImage, fullsizeImage);
       });
     });
   };
