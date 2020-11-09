@@ -3,28 +3,33 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import IndividualItem from './Pages/IndividualItem';
 import LandingPage from './Pages/LandingPage';
-
 import About from './Pages/About';
-import Purchase from './Pages/Purchase';
-import PostItem from './Pages/PostItem';
 import { Router } from '@reach/router';
+import Purchase from './Pages/Purchase';
+import { AuthProvider } from './contexts/AuthContext';
+import SignUp from './Pages/SignUp';
+import LogIn from './Pages/LogIn';
+import ResetPassword from './Pages/ResetPassword';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="central-area">
-        <Router primary={false}>
-          <LandingPage path="/" />
-          <IndividualItem path="/item/:item_id" />
-          <About path="/about" />
-          <Purchase path="/purchase/:item_id" />
-          <PostItem path="/post_item" />
-        </Router>
+    <AuthProvider>
+      <div className="App">
+        <Header />
+        <div className="central-area">
+          <Router primary={false}>
+            <LandingPage path="/" />
+            <IndividualItem path="/item/:item_id" />
+            <About path="/about" />
+            <Purchase path="/purchase/:item_id" />
+            <SignUp path="/signup" />
+            <LogIn path="/login" />
+            <ResetPassword path="/reset-password" />
+          </Router>
+        </div>
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </AuthProvider>
   );
 }
 
