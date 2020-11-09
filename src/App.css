@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
 .App {
@@ -20,7 +20,11 @@
   text-decoration: none;
 }
 .header h1 {
-  font-family: "Lobster Two", cursive;
+  font-family: 'Lobster Two', cursive;
+}
+
+.user-bar {
+  background-color: #e9edc9;
 }
 
 .central-area {
@@ -28,7 +32,7 @@
 }
 
 .individualItem-container {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .individualItem-card {
@@ -98,7 +102,7 @@
 }
 
 .project-title-footer {
-  font-family: "Lobster Two", cursive;
+  font-family: 'Lobster Two', cursive;
   font-style: italic;
   text-decoration: none;
   color: #ffffff;

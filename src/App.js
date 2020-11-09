@@ -8,6 +8,8 @@ import { Router } from '@reach/router';
 import Purchase from './Pages/Purchase';
 import { AuthProvider } from './contexts/AuthContext';
 import SignUp from './Pages/SignUp';
+import LogIn from './Pages/LogIn';
+import ResetPassword from './Pages/ResetPassword';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <About path="/about" />
             <Purchase path="/purchase/:item_id" />
             <SignUp path="/signup" />
+            <LogIn path="/login" />
+            <ResetPassword path="/reset-password" />
           </Router>
         </div>
         <Footer />

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { navigate } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import axios from 'axios';
 
 export default function SignUp() {
@@ -15,6 +15,7 @@ export default function SignUp() {
   const lastNameRef = useRef();
   const locationRef = useRef();
   const checkboxRef = useRef();
+  const termsRef = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,6 +33,12 @@ export default function SignUp() {
 
     if (!checkboxRef.current.checked) {
       return setError('You must be at least 18 years old to create an account');
+    }
+
+    if (!termsRef.current.checked) {
+      return setError(
+        'Please confirm that you have read the "How It Works" section in the About page'
+      );
     }
 
     try {
@@ -92,7 +99,15 @@ export default function SignUp() {
         <input id="location" type="text" ref={locationRef} required></input>
         <label htmlFor="age-verification">I am at least 18 years old:</label>
         <input type="checkbox" ref={checkboxRef}></input>
-        <button type="submit">Submit</button>
+        <label htmlFor="age-verification">
+          I confirm that I have read the <Link to="/about">'How It Works'</Link>{' '}
+          section on the About page and understand my role as a user on
+          CharityBay:
+        </label>
+        <input type="checkbox" ref={termsRef}></input>
+        <button disabled={loading} type="submit">
+          Submit
+        </button>
       </form>
     </>
   );
