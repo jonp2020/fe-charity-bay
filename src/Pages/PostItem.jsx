@@ -1,17 +1,22 @@
-import React, { Component } from "react";
-import { RegionDropdown } from "react-country-region-selector";
-import Resizer from "react-image-file-resizer";
-import axios from "axios";
-class PostIems extends Component {
+import React, { Component } from 'react';
+import { RegionDropdown } from 'react-country-region-selector';
+import Resizer from 'react-image-file-resizer';
+import axios from 'axios';
+import { useAuth } from '../contexts/AuthContext';
+
+class PostItem extends Component {
   state = {
-    country: "United Kingdom",
-    charity: "",
-    region: "",
-    category: "",
+    country: 'United Kingdom',
+    charity: '',
+    region: '',
+    category: '',
+    price: 0,
+    title: '',
+    description: '',
     file: null,
-    thumbnailImage: {},
-    fullsizeImage: {},
-    imagesSent: false,
+    // thumbnailImage: {},
+    // fullsizeImage: {},
+    // imagesSent: false,
   };
   /**************************image handling **************************/
   resizeThumbnailFile = (file) =>
@@ -20,13 +25,13 @@ class PostIems extends Component {
         file,
         120,
         120,
-        "JPEG",
+        'JPEG',
         80,
         0,
         (uri) => {
           resolve(uri);
         },
-        "base64"
+        'base64'
       );
     });
   resizeFullSizeFile = (file) =>
@@ -35,17 +40,17 @@ class PostIems extends Component {
         file,
         300,
         300,
-        "JPEG",
+        'JPEG',
         80,
         0,
         (uri) => {
           resolve(uri);
         },
-        "base64"
+        'base64'
       );
     });
   dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(","),
+    var arr = dataurl.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),
       n = bstr.length,
@@ -55,7 +60,6 @@ class PostIems extends Component {
       u8arr[n] = bstr.charCodeAt(n);
     }
     return new File([u8arr], filename, { type: mime });
-    
   }
   /*********************************************** */
 
@@ -63,7 +67,6 @@ class PostIems extends Component {
     this.setState({ region: val });
   };
   handleCategory = (e) => {
-    e.preventDefault();
     const { value } = e.target;
     this.setState({ category: value });
   };
@@ -71,35 +74,73 @@ class PostIems extends Component {
     this.setState({ file: e.target.files });
   };
   handleCharity = (e) => {
-    e.preventDefault();
     const { value } = e.target;
     this.setState({ charity: value });
   };
+  handlePrice = (e) => {
+    const { value } = e.target;
+    this.setState({ price: value });
+  };
+  handleTitle = (e) => {
+    const { value } = e.target;
+    this.setState({ title: value });
+  };
+  handleDescription = (e) => {
+    const { value } = e.target;
+    this.setState({ description: value });
+  };
+
   handleSubmit = (e) => {
-    const { country, charity, region, category, file } = this.state;
-    // console.log(this.state);
+    console.log(this.state);
+    const { file } = this.state;
     e.preventDefault();
     if (!file) {
-      throw new Error("Select a file first!");
+      throw new Error('Select a file first!');
     }
-    this.resizeThumbnailFile(file[0]).then((res) => {
-      const thumbnailFile = this.dataURLtoFile(res, 'thumbImage.jpeg');
+    return Promise.all([
+      this.resizeThumbnailFile(file[0]),
+      this.resizeFullSizeFile(file[0]),
+    ]).then(([thumbnailRes, fullsizeRes]) => {
+      const thumbnailFile = this.dataURLtoFile(thumbnailRes, 'thumbImage.jpeg');
+      const fullsizeFile = this.dataURLtoFile(fullsizeRes, 'fullImage.jpeg');
       const thumbnailForm = new FormData();
-      thumbnailForm.append('file', thumbnailFile);
-
-    })
-    this.resizeFullSizeFile(file).then((res) => {
-      const newFile2 = this.dataURLtoFile(res, 'fullImage.jpeg');
       const fullsizeForm = new FormData();
-      fullsizeForm.append('file', newFile2); 
-       this.setState({
-            fullsizeImage: fullsizeForm,
-          }); 
-    })
-
+      thumbnailForm.append('file', thumbnailFile);
+      fullsizeForm.append('file', fullsizeFile);
+      return Promise.all([
+        axios.post('http://localhost:9090/api/image', thumbnailForm, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }),
+        axios.post('http://localhost:9090/api/image', fullsizeForm, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }),
+      ]).then(([thumbnailImage, fullsizeImage]) => {
+        return Promise.all([thumbnailImage, fullsizeImage]);
+        axios.get('http://localhost:9090/api/users/user/');
+        console.log(thumbnailImage, fullsizeImage);
+      });
+    });
   };
+
+  // {
+  //     "thumbnail_img_ref": "Saturn_test_2.jpg",
+  //     "fullsize_img_ref": "earth-pic.jpg",
+  //     "title": "Digifad",
+  //     "description": "Ut sit do sint in tempor pariatur cupidatat ipsum elit. Deserunt minim consequat amet tempor minim laborum laborum dolore officia. Culpa eu aute laboris non anim minim tempor labore elit ex fugiat id proident. Quis nulla excepteur consectetur elit laborum officia officia. Ex officia in exercitation dolore magna ullamco duis et mollit irure aliqua minim. Irure ipsum reprehenderit magna culpa est nisi ad adipisicing dolore elit consequat adipisicing sint enim.",
+  //     "price": 6,
+  //     "category": "Toys",
+  //     "status": "available",
+  //     "seller_username": "Lois James",
+  //     "charity_id": 1,
+  //     "location": "stockport"
+  //   },
+
   render() {
-;    return (
+    return (
       <section>
         <h1>Post an Item</h1>
         <form onSubmit={this.handleSubmit}>
@@ -113,6 +154,7 @@ class PostIems extends Component {
                 id="title"
                 name="title"
                 placeholder="Item Name"
+                onChange={this.handleTitle}
               ></input>
             </div>
           </div>
@@ -125,22 +167,11 @@ class PostIems extends Component {
                 id="descp"
                 name="descp"
                 placeholder="Write about your item.."
+                onChange={this.handleDescription}
               ></textarea>
             </div>
           </div>
-          <div className="row">
-            <div className="col-25">
-              <label htmlFor="image">Picture</label>
-            </div>
-            <div className="col-75">
-              <input
-                type="file"
-                id="image"
-                name="image"
-                onChange={this.handleImage}
-              />
-            </div>
-          </div>
+
           <div className="row">
             <div className="col-25">
               <label for="category">Category</label>
@@ -156,7 +187,6 @@ class PostIems extends Component {
                 <option value="garden">Garden</option>
                 <option value="toys">Toys</option>
                 <option value="kitchenware">Kitchenware</option>
-
                 <option value="books">Books</option>
               </select>
             </div>
@@ -187,11 +217,37 @@ class PostIems extends Component {
                 <option value="women's aid">Women's Aid</option>
                 <option value="british red cross<">British Red Cross</option>
                 <option value="fareshare">FareShare</option>
-
                 <option value="NHS charities together">
                   NHS Charities Together
                 </option>
               </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-25">
+              <label htmlFor="price">Price</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="number"
+                id="price"
+                name="price"
+                placeholder="Item Price"
+                onChange={this.handlePrice}
+              ></input>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-25">
+              <label htmlFor="image">Picture</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="file"
+                id="image"
+                name="image"
+                onChange={this.handleImage}
+              />
             </div>
           </div>
           <button>Submit</button>
@@ -200,4 +256,4 @@ class PostIems extends Component {
     );
   }
 }
-export default PostIems;
+export default PostItem;
