@@ -3,9 +3,11 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import IndividualItem from "./Pages/IndividualItem";
 import LandingPage from "./Pages/LandingPage";
+
 import About from "./Pages/About";
 import Purchase from "./Pages/Purchase";
 import { Router } from "@reach/router";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Purchase path="/purchase/:item_id" />
         </Router>
       </div>
+
       <Footer />
     </div>
   );
