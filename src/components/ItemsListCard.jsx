@@ -1,12 +1,18 @@
-import React from "react";
-import { Link } from "@reach/router";
+import React from 'react';
+import { Link } from '@reach/router';
+require('dotenv').config();
 
 const ItemsListCard = (props) => {
+  console.log(process.env);
   return (
     <section className="itemsList">
       <picture>
         <Link to={`/item/${props.item.item_id}`} item={props.item}>
-          <img className="thumbnailImageStyle" src={`https://charity-images.s3.eu-west-2.amazonaws.com/${props.item.thumbnail_img_ref}`} alt="the item"></img>
+          <img
+            className="thumbnailImageStyle"
+            src={`${process.env.REACT_APP_S3_BUCKET}/${props.item.thumbnail_img_ref}`}
+            alt="the item"
+          ></img>
         </Link>
       </picture>
       <div className="itemsListTitle">

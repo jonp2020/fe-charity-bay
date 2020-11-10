@@ -21,6 +21,7 @@ class IndividualItem extends Component {
   handleChange = (event) => {
     console.log(event.target);
   };
+
   render() {
     const { item } = this.state;
     return (
@@ -28,7 +29,7 @@ class IndividualItem extends Component {
         <div className="individualItem-card">
           <img
             className="individualItem-item-image"
-            src={`https://charity-images.s3.eu-west-2.amazonaws.com/${item.thumbnail_img_ref}`}
+            src={`${process.env.REACT_APP_S3_BUCKET}/${item.thumbnail_img_ref}`}
             alt="individual-item"
           ></img>
           <div className="wrapping">

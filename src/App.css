@@ -276,7 +276,7 @@ footer {
 }
 
 /*post-page*/
-input[type="text"],
+input[type='text'],
 select,
 textarea {
   width: 100%;
@@ -292,7 +292,7 @@ label {
   font-size: 20px;
 }
 
-input[type="submit"] {
+input[type='submit'] {
   background-color: #4caf50;
   color: white;
   padding: 12px 20px;
@@ -317,14 +317,14 @@ input[type="submit"] {
   margin-top: 6px;
 }
 .row:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
 @media screen and (max-width: 600px) {
   .col-25,
   .col-75,
-  input[type="submit"] {
+  input[type='submit'] {
     width: 100%;
     margin-top: 0;
   }
@@ -362,4 +362,8 @@ form {
     display: flex;
     align-items: center;
   }
+}
+
+.button-background {
+  background-color: red;
 }

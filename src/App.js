@@ -11,6 +11,7 @@ import SignUp from './Pages/SignUp';
 import LogIn from './Pages/LogIn';
 import PostItem from './Pages/PostItem';
 import ResetPassword from './Pages/ResetPassword';
+import Dashboard from './Pages/Dashboard';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <div className="central-area">
           <Router primary={false}>
             <LandingPage path="/" />
+            <Dashboard path="/dashboard" />
             <IndividualItem path="/item/:item_id" />
             <About path="/about" />
             <Purchase path="/purchase/:item_id" />
