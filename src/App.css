@@ -290,14 +290,17 @@ footer {
 .about-us p {
   margin: 1rem;
 }
+
 .thumbnailImageStyle {
   max-width: 120px;
   max-height: 120px;
 }
+
 /*post-page*/
 input[type="text"],
 select,
 textarea {
+
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -323,6 +326,7 @@ input[type="email"] {
   resize: vertical;
 }
 
+
 /* input[type="checkbox"] {
   width: 50%;
   padding: 12px;
@@ -332,10 +336,12 @@ input[type="email"] {
   resize: vertical;
 } */
 
+
 label {
   padding: 12px 12px 12px 0;
   /* display: inline-block; */
   font-size: 20px;
+
   float: right;
 }
 
@@ -375,6 +381,7 @@ input[type="submit"] {
     width: 100%;
     margin-top: 0;
   }
+
   label {
     padding: 12px 12px 12px 0;
     /* display: inline-block; */
@@ -389,6 +396,7 @@ input[type="submit"] {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 .item-image {
   display: flex;
@@ -425,6 +433,7 @@ form {
     align-items: center;
   }
 }
+
 
 /* .login-container {
   

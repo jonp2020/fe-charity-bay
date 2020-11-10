@@ -9,6 +9,7 @@ import Purchase from './Pages/Purchase';
 import { AuthProvider } from './contexts/AuthContext';
 import SignUp from './Pages/SignUp';
 import LogIn from './Pages/LogIn';
+import PostItem from './Pages/PostItem';
 import ResetPassword from './Pages/ResetPassword';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <SignUp path="/signup" />
             <LogIn path="/login" />
             <ResetPassword path="/reset-password" />
+            <PostItem path="/post_item" />
           </Router>
         </div>
         <Footer />

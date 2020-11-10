@@ -1,27 +1,22 @@
-import React, { Component } from "react";
-import { Link } from "@reach/router";
-
+import React, { Component } from 'react';
+import { Link } from '@reach/router';
+import axios from 'axios';
 
 class IndividualItem extends Component {
   state = {
-    item: {
-      item_id: 2,
-      thumbnail_img_ref: "http://placehold.it/50x50",
-      fullsize_img_ref: "http://placehold.it/300x300",
-      title: "Belt with fake diamonds",
-      description:
-        "Dolor enim tempor consectetur amet occaecat ex exercitation consectetur et enim. Cupidatat irure eiusmod fugiat est enim velit adipisicing culpa aute nulla excepteur dolor cupidatat ex. Esse est sint irure sint quis magna consequat.",
-      price: 5,
-      category: "Clothes",
-      status: "available",
-      seller_username: "Lois James",
-      charity_id: 1,
-      location: "stockport",
-    },
+    item: {},
     isLoading: true,
   };
-  componentDidMount() {}
-  componentDidUpdate() {}
+
+  componentDidMount() {
+    return axios
+      .get(
+        `https://charity-bay-be.herokuapp.com/api/items/${this.props.item_id}`
+      )
+      .then(({ data: { item } }) => {
+        this.setState({ item, isLoading: false });
+      });
+  }
 
   handleChange = (event) => {
     console.log(event.target);
@@ -33,7 +28,7 @@ class IndividualItem extends Component {
         <div className="individualItem-card">
           <img
             className="individualItem-item-image"
-            src={item.fullsize_img_ref}
+            src={`https://charity-images.s3.eu-west-2.amazonaws.com/${item.thumbnail_img_ref}`}
             alt="individual-item"
           ></img>
           <div className="wrapping">
@@ -52,7 +47,7 @@ class IndividualItem extends Component {
           Money for this item will be donated to <strong>Age Concern</strong>
         </p>
         <Link className="donate-btn" to={`/purchase/${item.item_id}`}>
-        <button className="donate-btn">Click to buy and donate</button>
+          <button className="donate-btn">Click to buy and donate</button>
         </Link>
       </section>
     );

@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import ItemsListCard from '../components/ItemsListCard';
+import axios from 'axios';
 
 class Purchase extends Component {
 
 state = {
- item: {  item_id: 2,
-      thumbnail_img_ref: "http://placehold.it/50x50",
-      fullsize_img_ref: "http://placehold.it/300x300",
-      title: "Belt with fake diamonds",
-      description:
-        "Dolor enim tempor consectetur amet occaecat ex exercitation consectetur et enim. Cupidatat irure eiusmod fugiat est enim velit adipisicing culpa aute nulla excepteur dolor cupidatat ex. Esse est sint irure sint quis magna consequat.",
-      price: 5,
-      category: "Clothes",
-      status: "available",
-      seller_username: "Lois James",
-      charity_id: 1,
-      location: "stockport",
-    },
-
+ item: {},
  isLoading: true,
 }
 
+componentDidMount(){
+return axios.get(`https://charity-bay-be.herokuapp.com/api/items/${this.props.item_id}`).then
+(({ data: { item } }) => {
+this.setState({ item, isLoading: false })
+})
+  }
+
+  //onSubmit to change the status in state once donate button clicked??
+
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>Review Your Order</h1>
