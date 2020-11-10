@@ -1,36 +1,48 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemsListCard from '../components/ItemsListCard';
 import axios from 'axios';
+import { useAuth } from '../contexts/AuthContext';
 
-class Purchase extends Component {
+export default function Purchase(props) {
+  const { currentUser } = useAuth();
+  const [item, setItem] = useState({});
+  const [loading, setLoading] = useState(true);
 
-state = {
- item: {},
- isLoading: true,
-}
+  useEffect(() => {
+    return axios
+      .get(`https://charity-bay-be.herokuapp.com/api/items/${props.item_id}`)
+      .then(({ data: { item } }) => {
+        setItem(item);
+        setLoading(false);
+      });
+  });
 
-componentDidMount(){
-return axios.get(`https://charity-bay-be.herokuapp.com/api/items/${this.props.item_id}`).then
-(({ data: { item } }) => {
-this.setState({ item, isLoading: false })
-})
-  }
-
-  //onSubmit to change the status in state once donate button clicked??
-
-  render() {
-    console.log(this.props);
-    return (
-      <div>
-        <h1>Review Your Order</h1>
-        <ItemsListCard item={this.state.item}/>
-        <h2>Next Steps</h2>
-      <button>
-       <a href="http://link.justgiving.com/v1/charity/donate/charityId/11496?amount=2.00&currency=GBP&reference=Age2&exitUrl=http%3A%2F%2Flocalhost%3A3000%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID">Donate</a>
-       </button>
-      </div>
+  async function handleReserve() {
+    const {
+      data: { user },
+    } = await axios.get(
+      `https://charity-bay-be.herokuapp.com/api/users/user/${currentUser.email}`
+    );
+    await axios.patch(
+      `https://charity-bay-be.herokuapp.com/api/items/${props.item_id}`,
+      { status: 'reserved', buyer: user.username }
     );
   }
-}
 
-export default Purchase;
+  return (
+    <div>
+      <h1>Review Your Order</h1>
+      {!loading && (
+        <>
+          <ItemsListCard item={item} />
+          <h2>Next Steps</h2>
+          <button onClick={handleReserve}>
+            <a href="http://link.justgiving.com/v1/charity/donate/charityId/11496?amount=2.00&currency=GBP&reference=Age2&exitUrl=http%3A%2F%2Flocalhost%3A3000%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID">
+              Donate
+            </a>
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
