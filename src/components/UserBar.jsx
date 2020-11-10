@@ -1,48 +1,66 @@
-import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { Link, navigate } from '@reach/router';
+import React, { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, navigate } from "@reach/router";
 
 export default function UserBar({ location }) {
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState();
 
   async function handleLogout() {
-    setError('');
+    setError("");
 
     try {
       await logout();
-      navigate('/login');
+      navigate("/login");
     } catch {
-      setError('Failed to log out');
+      setError("Failed to log out");
     }
   }
 
   if (currentUser) {
     return (
       <div className="user-bar">
-        <p>Logged in as: {currentUser.email}</p>
-        <button onClick={handleLogout}>Log Out</button>
-        {error && <p>{error}</p>}
+        <div className="user-bar-loggedIn-text-wrapper">
+          <p className="user-bar-loggedIn-text">Logged in as: </p>
+          <p className="user-bar-loggedIn-text">
+            <strong>{currentUser.email}</strong>
+          </p>
+        </div>
+        <div className="user-bar-loggedIn-btn-wrapper">
+          <button className="user-bar-loggedIn-btn" onClick={handleLogout}>
+            Log Out
+          </button>
+          {error && <p>{error}</p>}
+        </div>
       </div>
     );
   }
-  if (location.pathname === '/signup') {
+  if (location.pathname === "/signup") {
     return (
       <div className="user-bar">
-        <Link to="/login">Log In</Link>
+        <Link className="user-bar-login-out" to="/login">
+          Log In
+        </Link>
       </div>
     );
   }
-  if (location.pathname === '/login') {
+  if (location.pathname === "/login") {
     return (
       <div className="user-bar">
-        <Link to="/signup">Sign Up</Link>
+        <Link className="user-bar-login-out" to="/signup">
+          Sign Up
+        </Link>
       </div>
     );
   }
   return (
     <div className="user-bar">
-      <Link to="/login">Log In</Link> <Link to="/signup">Sign Up</Link>
+      <Link className="user-bar-login-out" to="/login">
+        Log In
+      </Link>{" "}
+      <Link className="user-bar-login-out" to="/signup">
+        Sign Up
+      </Link>
     </div>
   );
 }
