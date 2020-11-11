@@ -15,6 +15,7 @@ export default function SignUp() {
   const locationRef = useRef();
   const checkboxRef = useRef();
   const termsRef = useRef();
+
   async function handleSubmit(e) {
     e.preventDefault();
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
@@ -37,6 +38,7 @@ export default function SignUp() {
     try {
       setError("");
       setLoading(true);
+    
       const {
         data: { user },
       } = await axios.get(
@@ -61,8 +63,33 @@ export default function SignUp() {
         setError(error);
       }
     }
-    setLoading(false);
+    //  const dataToSubmit = {
+    //   email: emailRef,
+    //   name: firstNameRef,
+    //   type: "welcome"
+    // }
+    //   return axios.post("https://localhost:9090/api/mail", dataToSubmit)
+    //   .then(() => {
+    //   setLoading(false);
+    //   handleMail()
+        
+    // })
+
+     setLoading(false);
+      handleMail();
   }
+
+function handleMail () {
+  console.log("handlemail");
+      const dataToSubmit = {
+      email: emailRef.current.value,
+      name: firstNameRef.current.value,
+      type: "Welcome"
+    }
+       axios.post("http://localhost:9090/api/mail", dataToSubmit)
+}
+
+
   return (
     <>
       <h1 className="signup-login-header">Sign up</h1>
