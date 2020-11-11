@@ -26,12 +26,21 @@ export default function ResetPassword() {
   return (
     <div>
       {error && <p>{error}</p>}
-      Password Reset
+      <h1 className="signup-login-header">Reset Password</h1>
       {message && <p>{message}</p>}
+
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input id="email" type="text" ref={emailRef}></input>
-        <button disabled={loading}>Reset password</button>
+        <div className="row">
+          <div className="col-25">
+            <label htmlFor="email">Email:</label>{' '}
+          </div>
+          <div className="col-75">
+            <input id="email" type="text" ref={emailRef} required></input>
+          </div>
+        </div>
+        <button className="sign-up-login-btn" disabled={loading} type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

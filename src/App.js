@@ -13,6 +13,7 @@ import PostItem from './Pages/PostItem';
 import ResetPassword from './Pages/ResetPassword';
 import Dashboard from './Pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
+import ErrorDisplayer from './components/ErrorDisplayer';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <PrivateRoute as={Purchase} path="/purchase/:item_id" />
             <PrivateRoute as={Dashboard} path="/dashboard" />
             <PrivateRoute as={PostItem} path="/post_item" />
+            <ErrorDisplayer default msg="Page does not exist" status="404" />
           </Router>
         </div>
         <Footer />
