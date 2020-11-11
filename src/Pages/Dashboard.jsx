@@ -65,6 +65,31 @@ export default function Dashboard() {
     setPage(newPage);
   }
 
+function handleMail(item) {
+  axios.get(
+        `https://charity-bay-be.herokuapp.com/api/users/${item.seller_username}`
+      )
+      .then((result) => {
+const sellerEmail = result.data.user.email;
+const sellerDataToSubmit = {
+      email: sellerEmail,
+      name: item.seller_username,
+      type: "Sold",
+      clientEmail: currentUser.email,
+    }
+       axios.post('https://charity-bay-be.herokuapp.com/api/mail', sellerDataToSubmit)
+      
+      const buyerDataToSubmit = {
+      email: currentUser.email,
+      name: item.buyer,
+      type: "Bought",
+      clientEmail: sellerEmail,
+    }
+       axios.post('https://charity-bay-be.herokuapp.com/api/mail', buyerDataToSubmit)
+      })
+}
+
+
   const articlesPerPage = 10;
   const pageCount = Math.ceil(itemCount / articlesPerPage);
   const atStart = page === 1;
@@ -115,6 +140,7 @@ export default function Dashboard() {
                       onClick={() => {
                         handlePurchase(item.item_id);
                         setChange('purchased');
+                        handleMail(item);
                       }}
                     >
                       Purchase
