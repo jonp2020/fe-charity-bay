@@ -23,7 +23,7 @@ export default function LogIn() {
     setLoading(false);
   }
 
-  {
+  
     /* <div className="row">
           <div className="col-25">
             <label htmlFor="email">Email:</label>
@@ -32,7 +32,7 @@ export default function LogIn() {
             <input id="email" type="text" ref={emailRef} required></input>
           </div>
         </div> */
-  }
+  
 
   return (
     <>
