@@ -53,6 +53,7 @@ export default function SignUp() {
         last_name: lastNameRef.current.value,
         location: locationRef.current.value,
       });
+      handleMail();
       navigate("/dashboard");
     } catch (err) {
       if (err.response) {
@@ -63,30 +64,16 @@ export default function SignUp() {
         setError(error);
       }
     }
-    //  const dataToSubmit = {
-    //   email: emailRef,
-    //   name: firstNameRef,
-    //   type: "welcome"
-    // }
-    //   return axios.post("https://localhost:9090/api/mail", dataToSubmit)
-    //   .then(() => {
-    //   setLoading(false);
-    //   handleMail()
-        
-    // })
-
      setLoading(false);
-      handleMail();
   }
 
 function handleMail () {
-  console.log("handlemail");
       const dataToSubmit = {
       email: emailRef.current.value,
       name: firstNameRef.current.value,
       type: "Welcome"
     }
-       axios.post("http://localhost:9090/api/mail", dataToSubmit)
+       axios.post('https://charity-bay-be.herokuapp.com/api/mail', dataToSubmit)
 }
 
 

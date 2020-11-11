@@ -71,14 +71,13 @@ function handleMail(item) {
       )
       .then((result) => {
 const sellerEmail = result.data.user.email;
-console.log("LOG3", sellerEmail);       
 const sellerDataToSubmit = {
       email: sellerEmail,
       name: item.seller_username,
       type: "Sold",
       clientEmail: currentUser.email,
     }
-       axios.post("http://localhost:9090/api/mail", sellerDataToSubmit)
+       axios.post('https://charity-bay-be.herokuapp.com/api/mail', sellerDataToSubmit)
       
       const buyerDataToSubmit = {
       email: currentUser.email,
@@ -86,7 +85,7 @@ const sellerDataToSubmit = {
       type: "Bought",
       clientEmail: sellerEmail,
     }
-       axios.post("http://localhost:9090/api/mail", buyerDataToSubmit)
+       axios.post('https://charity-bay-be.herokuapp.com/api/mail', buyerDataToSubmit)
       })
 }
 
