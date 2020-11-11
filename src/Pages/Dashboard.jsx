@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
-import ItemsListCard from '../components/ItemsListCard';
-import Pagination from '../components/Pagination';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
+import ItemsListCard from "../components/ItemsListCard";
+import Pagination from "../components/Pagination";
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [itemCount, setItemCount] = useState(0);
-  const [list, setList] = useState('reserved');
+  const [list, setList] = useState("reserved");
   const [page, setPage] = useState(1);
-  const [change, setChange] = useState('');
+  const [change, setChange] = useState("");
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -20,17 +20,17 @@ export default function Dashboard() {
         `https://charity-bay-be.herokuapp.com/api/users/user/${currentUser.email}`
       )
       .then(({ data: { user } }) => {
-        if (list === 'reserved' || list === 'purchased') {
+        if (list === "reserved" || list === "purchased") {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=${list}&buyer=${user.username}&p=${page}`
           );
         }
-        if (list === 'available') {
+        if (list === "available") {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=${list}&seller_username=${user.username}&p=${page}`
           );
         }
-        if (list === 'sold') {
+        if (list === "sold") {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=purchased&seller_username=${user.username}&p=${page}`
           );
@@ -46,7 +46,7 @@ export default function Dashboard() {
   async function handlePurchase(item_id) {
     await axios.patch(
       `https://charity-bay-be.herokuapp.com/api/items/${item_id}`,
-      { status: 'purchased' }
+      { status: "purchased" }
     );
   }
 
@@ -65,30 +65,36 @@ export default function Dashboard() {
     setPage(newPage);
   }
 
-function handleMail(item) {
-  axios.get(
+  function handleMail(item) {
+    axios
+      .get(
         `https://charity-bay-be.herokuapp.com/api/users/${item.seller_username}`
       )
       .then((result) => {
-const sellerEmail = result.data.user.email;
-const sellerDataToSubmit = {
-      email: sellerEmail,
-      name: item.seller_username,
-      type: "Sold",
-      clientEmail: currentUser.email,
-    }
-       axios.post('https://charity-bay-be.herokuapp.com/api/mail', sellerDataToSubmit)
-      
-      const buyerDataToSubmit = {
-      email: currentUser.email,
-      name: item.buyer,
-      type: "Bought",
-      clientEmail: sellerEmail,
-    }
-       axios.post('https://charity-bay-be.herokuapp.com/api/mail', buyerDataToSubmit)
-      })
-}
+        const sellerEmail = result.data.user.email;
+        const sellerDataToSubmit = {
+          email: sellerEmail,
+          name: item.seller_username,
+          type: "Sold",
+          clientEmail: currentUser.email,
+        };
+        axios.post(
+          "https://charity-bay-be.herokuapp.com/api/mail",
+          sellerDataToSubmit
+        );
 
+        const buyerDataToSubmit = {
+          email: currentUser.email,
+          name: item.buyer,
+          type: "Bought",
+          clientEmail: sellerEmail,
+        };
+        axios.post(
+          "https://charity-bay-be.herokuapp.com/api/mail",
+          buyerDataToSubmit
+        );
+      });
+  }
 
   const articlesPerPage = 10;
   const pageCount = Math.ceil(itemCount / articlesPerPage);
@@ -98,48 +104,56 @@ const sellerDataToSubmit = {
   return (
     <div>
       <h1>Dashboard</h1>
+        <div className="btn-container">
       <button
+        className="dashboard-btns"
         onClick={() => {
-          setList('reserved');
+          setList("reserved");
         }}
       >
         Reserved
       </button>
       <button
+        className="dashboard-btns"
         onClick={() => {
-          setList('purchased');
+          setList("purchased");
         }}
       >
         Purchased
       </button>
       <button
+        className="dashboard-btns"
         onClick={() => {
-          setList('available');
+          setList("available");
         }}
       >
         For Sale
       </button>
       <button
+        className="dashboard-btns"
         onClick={() => {
-          setList('sold');
+          setList("sold");
         }}
       >
-        Sold
+          Sold
       </button>
+        </div>
       {!items.length && !loading ? (
         <p>There are no items to display</p>
       ) : (
         <>
           <ul>
             {items.map((item) => {
-              if (list === 'reserved') {
+              if (list === "reserved") {
+
                 return (
                   <>
+                    <h2>Your reserved </h2>
                     <ItemsListCard key={item.item_id} item={item} />
                     <button
                       onClick={() => {
                         handlePurchase(item.item_id);
-                        setChange('purchased');
+                        setChange("purchased");
                         handleMail(item);
                       }}
                     >
@@ -148,14 +162,14 @@ const sellerDataToSubmit = {
                   </>
                 );
               }
-              if (list === 'available') {
+              if (list === "available") {
                 return (
                   <>
                     <ItemsListCard key={item.item_id} item={item} />
                     <button
                       onClick={() => {
                         handleDelete(item);
-                        setChange('deleted');
+                        setChange("deleted");
                       }}
                     >
                       Delete
