@@ -3,7 +3,6 @@ import { Link } from '@reach/router';
 require('dotenv').config();
 
 const ItemsListCard = (props) => {
-  console.log(process.env);
   return (
     <section className="itemsList">
       <picture>

@@ -12,6 +12,7 @@ import LogIn from './Pages/LogIn';
 import PostItem from './Pages/PostItem';
 import ResetPassword from './Pages/ResetPassword';
 import Dashboard from './Pages/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -21,14 +22,14 @@ function App() {
         <div className="central-area">
           <Router primary={false}>
             <LandingPage path="/" />
-            <Dashboard path="/dashboard" />
             <IndividualItem path="/item/:item_id" />
             <About path="/about" />
-            <Purchase path="/purchase/:item_id" />
             <SignUp path="/signup" />
             <LogIn path="/login" />
             <ResetPassword path="/reset-password" />
-            <PostItem path="/post_item" />
+            <PrivateRoute as={Purchase} path="/purchase/:item_id" />
+            <PrivateRoute as={Dashboard} path="/dashboard" />
+            <PrivateRoute as={PostItem} path="/post_item" />
           </Router>
         </div>
         <Footer />
