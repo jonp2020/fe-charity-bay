@@ -171,7 +171,7 @@ export default function PostItem() {
 
         <div className="row">
           <div className="col-25">
-            <label for="category">Category</label>
+            <label htmlFor="category">Category</label>
           </div>
           <div className="col-75">
             <select id="category" name="category" required ref={categoryRef}>
@@ -202,7 +202,7 @@ export default function PostItem() {
         </div>
         <div className="row">
           <div className="col-25">
-            <label for="charity">Charity</label>
+            <label htmlFor="charity">Charity</label>
           </div>
           <div className="col-75">
             <select id="charity" name="charity" required ref={charityRef}>

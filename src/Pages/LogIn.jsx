@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { Link, navigate } from "@reach/router";
+import React, { useRef, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { Link, navigate } from '@reach/router';
 
 export default function LogIn() {
   const { login } = useAuth();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -13,26 +13,15 @@ export default function LogIn() {
     e.preventDefault();
 
     try {
-      setError("");
+      setError('');
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/dashboard");
+      navigate('/dashboard');
     } catch {
-      setError("Failed to log in");
+      setError('Failed to log in');
     }
     setLoading(false);
   }
-
-  
-    /* <div className="row">
-          <div className="col-25">
-            <label htmlFor="email">Email:</label>
-          </div>
-          <div className="col-75">
-            <input id="email" type="text" ref={emailRef} required></input>
-          </div>
-        </div> */
-  
 
   return (
     <>
@@ -40,7 +29,7 @@ export default function LogIn() {
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-25">
-            <label htmlFor="email">Email:</label>{" "}
+            <label htmlFor="email">Email:</label>{' '}
           </div>
           <div className="col-75">
             <input id="email" type="text" ref={emailRef} required></input>
@@ -49,7 +38,7 @@ export default function LogIn() {
 
         <div className="row">
           <div className="col-25">
-            <label htmlFor="password">Password:</label>{" "}
+            <label htmlFor="password">Password:</label>{' '}
           </div>
           <div className="col-75">
             <input
