@@ -36,7 +36,7 @@ export default function PostItem() {
     return new Promise((resolve) => {
       Resizer.imageFileResizer(
         file,
-        300,
+        500,
         300,
         'JPEG',
         100,
@@ -73,6 +73,7 @@ export default function PostItem() {
       throw new Error('Select a file first!');
     }
     //refactor using async/await
+
     return Promise.all([
       resizeThumbnailFile(file[0]),
       resizeFullSizeFile(file[0]),
