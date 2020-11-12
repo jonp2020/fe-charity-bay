@@ -40,7 +40,7 @@ class IndividualItem extends Component {
             <p className="individualItem-sellerUsername">
               Seller: {item.seller_username}
             </p>
-            <p className="individualItem-price-amount">£{item.price}</p>
+            <p className="individualItem-price-amount">£{item.price}.00</p>
           </div>
         </div>
         <p className="individualItem-desktop-description">{item.description}</p>

@@ -65,30 +65,36 @@ export default function Dashboard() {
     setPage(newPage);
   }
 
-function handleMail(item) {
-  axios.get(
+  function handleMail(item) {
+    axios
+      .get(
         `https://charity-bay-be.herokuapp.com/api/users/${item.seller_username}`
       )
       .then((result) => {
-const sellerEmail = result.data.user.email;
-const sellerDataToSubmit = {
-      email: sellerEmail,
-      name: item.seller_username,
-      type: "Sold",
-      clientEmail: currentUser.email,
-    }
-       axios.post('https://charity-bay-be.herokuapp.com/api/mail', sellerDataToSubmit)
-      
-      const buyerDataToSubmit = {
-      email: currentUser.email,
-      name: item.buyer,
-      type: "Bought",
-      clientEmail: sellerEmail,
-    }
-       axios.post('https://charity-bay-be.herokuapp.com/api/mail', buyerDataToSubmit)
-      })
-}
+        const sellerEmail = result.data.user.email;
+        const sellerDataToSubmit = {
+          email: sellerEmail,
+          name: item.seller_username,
+          type: 'Sold',
+          clientEmail: currentUser.email,
+        };
+        axios.post(
+          'https://charity-bay-be.herokuapp.com/api/mail',
+          sellerDataToSubmit
+        );
 
+        const buyerDataToSubmit = {
+          email: currentUser.email,
+          name: item.buyer,
+          type: 'Bought',
+          clientEmail: sellerEmail,
+        };
+        axios.post(
+          'https://charity-bay-be.herokuapp.com/api/mail',
+          buyerDataToSubmit
+        );
+      });
+  }
 
   const articlesPerPage = 10;
   const pageCount = Math.ceil(itemCount / articlesPerPage);
@@ -97,46 +103,57 @@ const sellerDataToSubmit = {
   const pages = Array.from({ length: pageCount }).map((item, i) => i + 1);
   return (
     <div>
-      <h1>Dashboard</h1>
-      <button
-        onClick={() => {
-          setList('reserved');
-        }}
-      >
-        Reserved
-      </button>
-      <button
-        onClick={() => {
-          setList('purchased');
-        }}
-      >
-        Purchased
-      </button>
-      <button
-        onClick={() => {
-          setList('available');
-        }}
-      >
-        For Sale
-      </button>
-      <button
-        onClick={() => {
-          setList('sold');
-        }}
-      >
-        Sold
-      </button>
-      {!items.length && !loading ? (
-        <p>There are no items to display</p>
-      ) : (
+      <h1 className="dashboard-head">Dashboard</h1>
+      <div className="btn-container">
+        <button
+          className="dashboard-btns"
+          onClick={() => {
+            setList('reserved');
+          }}
+        >
+          Reserved
+        </button>
+        <button
+          className="dashboard-btns"
+          onClick={() => {
+            setList('purchased');
+          }}
+        >
+          Purchased
+        </button>
+        <button
+          className="dashboard-btns"
+          onClick={() => {
+            setList('available');
+          }}
+        >
+          For Sale
+        </button>
+        <button
+          className="dashboard-btns"
+          onClick={() => {
+            setList('sold');
+          }}
+        >
+          Sold
+        </button>
+      </div>
+
+      {list === 'reserved' && !loading ? (
         <>
-          <ul>
-            {items.map((item) => {
-              if (list === 'reserved') {
+          <h2 className="dashboard-header">Your Reserved Items</h2>
+          <p className="reserve-paragraph">
+            Once you have donated the money for your reserved item, click the
+            'Confirm Purchase' button to notify the seller.
+          </p>
+          {items.length ? (
+            <ul>
+              {items.map((item) => {
                 return (
                   <>
                     <ItemsListCard key={item.item_id} item={item} />
                     <button
+                      className="action-button"
                       onClick={() => {
                         handlePurchase(item.item_id);
                         setChange('purchased');
@@ -147,12 +164,36 @@ const sellerDataToSubmit = {
                     </button>
                   </>
                 );
-              }
-              if (list === 'available') {
+              })}
+            </ul>
+          ) : (
+            <p>There are no items to display</p>
+          )}
+        </>
+      ) : list === 'purchased' && !loading ? (
+        <>
+          <h2 className="dashboard-header">Your Purchased Items</h2>
+          {items.length ? (
+            <ul>
+              {items.map((item) => {
+                return <ItemsListCard key={item.item_id} item={item} />;
+              })}
+            </ul>
+          ) : (
+            <p>There are no items to display</p>
+          )}
+        </>
+      ) : list === 'available' && !loading ? (
+        <>
+          <h2 className="dashboard-header">Your Items For Sale</h2>
+          {items.length ? (
+            <ul>
+              {items.map((item) => {
                 return (
                   <>
                     <ItemsListCard key={item.item_id} item={item} />
                     <button
+                      className="action-button"
                       onClick={() => {
                         handleDelete(item);
                         setChange('deleted');
@@ -162,19 +203,105 @@ const sellerDataToSubmit = {
                     </button>
                   </>
                 );
-              }
-              return <ItemsListCard key={item.item_id} item={item} />;
-            })}
-          </ul>
-          <Pagination
-            page={page}
-            atStart={atStart}
-            atEnd={atEnd}
-            pages={pages}
-            changePage={changePage}
-          />
+              })}
+            </ul>
+          ) : (
+            <p>There are no items to display</p>
+          )}
         </>
-      )}
+      ) : list === 'sold' && !loading ? (
+        <>
+          <h2 className="dashboard-header">Your Sold Items</h2>
+          {items.length ? (
+            <ul>
+              {items.map((item) => {
+                return <ItemsListCard key={item.item_id} item={item} />;
+              })}
+            </ul>
+          ) : (
+            <p>There are no items to display</p>
+          )}
+        </>
+      ) : null}
+      {items.length && !loading ? (
+        <Pagination
+          page={page}
+          atStart={atStart}
+          atEnd={atEnd}
+          pages={pages}
+          changePage={changePage}
+        />
+      ) : null}
+      {/* {!items.length && !loading ? (
+        <p>There are no items to display</p>
+      ) : (
+        <>
+          {list === 'reserved' && !loading ? (
+            <>
+              <h2 className="dashboard-header">Your Reserved Items</h2>
+              <p className="reserve-paragraph">
+                Once you have donated the money for your reserved item, click
+                the 'Confirm Purchase' button to notify the seller.
+              </p>
+            </>
+          ) : list === 'purchased' && !loading ? (
+            <h2 className="dashboard-header">Your Purchased Items</h2>
+          ) : list === 'available' && !loading ? (
+            <h2 className="dashboard-header">Your Items For Sale</h2>
+          ) : list === 'sold' && !loading ? (
+            <h2 className="dashboard-header">Your Sold Items</h2>
+          ) : null}
+          {!loading && (
+            <>
+              <ul>
+                {items.map((item) => {
+                  if (list === 'reserved') {
+                    return (
+                      <>
+                        <ItemsListCard key={item.item_id} item={item} />
+                        <button
+                          onClick={() => {
+                            handlePurchase(item.item_id);
+                            setChange('purchased');
+                            handleMail(item);
+                          }}
+                        >
+                          Purchase
+                        </button>
+                      </>
+                    );
+                  }
+                  if (list === 'available') {
+                    return (
+                      <>
+                        <ItemsListCard key={item.item_id} item={item} />
+                        <button
+                          onClick={() => {
+                            handleDelete(item);
+                            setChange('deleted');
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </>
+                    );
+                  }
+
+                  return <ItemsListCard key={item.item_id} item={item} />;
+                })}
+              </ul>
+
+              <Pagination
+                page={page}
+                atStart={atStart}
+                atEnd={atEnd}
+                pages={pages}
+                changePage={changePage}
+              />
+            </>
+          )}
+        </>
+      )} */}
     </div>
   );
 }
