@@ -611,3 +611,13 @@ form {
   text-align: left;
   margin: 0.6rem 0 1rem 1.2rem;
 }
+
+.purchase-info-header {
+  text-align: left;
+  margin: 1.6rem 0 1rem 1.2rem;
+}
+
+.purchase-instructions {
+  text-align: left;
+  margin: 0.6rem 1.2rem;
+}
