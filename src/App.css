@@ -298,10 +298,10 @@
   padding: 6px 12px;
   margin: 2px;
 }
-#p-Button-background{
-     background: rgb(250,237,205);
-             padding: 6px 12px;
-             margin: 2px;
+#p-Button-background {
+  background: rgb(250, 237, 205);
+  padding: 6px 12px;
+  margin: 2px;
 }
 
 /* Footer styling */
@@ -674,8 +674,7 @@ form {
 }
 
 @media screen and (max-width: 600px) {
-  .login-container 
-  {
+  .login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -705,7 +704,6 @@ form {
   }
 }
 
-
 .charityDisplay-btn {
   justify-self: start;
   display: inline-block;
@@ -713,13 +711,22 @@ form {
   margin: 1em 0 2rem 0;
   border-radius: 12px;
   padding: 0.8rem;
+}
+
+.dashboard-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d4a373;
+  color: white;
+}
 
 /************************** dashboard big screen***********************/
 .item-list-wrapper {
   display: flex;
   flex: 0 0 1em;
 }
-.item-descp-wraper{
+.item-descp-wraper {
   text-align: justify;
 }
 .dashboard-wrapper {
@@ -765,18 +772,37 @@ form {
   justify-content: space-evenly;
 }
 
+.dashboard-btn-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.dashboard-display {
+  vertical-align: super;
+  display: grid;
+  grid-template-rows: 1fr 40px;
+  margin-bottom: 1rem;
+}
+
 .dashboard-head {
+  font-family: "Lobster Two", cursive;
   margin-top: 2rem;
 }
 
 .dashboard-header {
+  vertical-align: super;
   color: #d4a373;
-  text-align: left;
+  text-align: center;
   margin-left: 1.2rem;
 }
 
 .reserve-paragraph {
-  text-align: left;
+  text-align: center;
+  margin: 0.6rem 0 1rem 1.2rem;
+}
+
+.noitem-detail {
+  text-align: center;
   margin: 0.6rem 0 1rem 1.2rem;
 }
 
@@ -793,4 +819,3 @@ form {
 .review-head {
   margin: 2rem 0 1rem 0;
 }
-
