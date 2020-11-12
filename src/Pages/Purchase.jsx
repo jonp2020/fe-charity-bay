@@ -3,11 +3,22 @@ import ItemsListCard from '../components/ItemsListCard';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { navigate } from '@reach/router';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
 
 export default function Purchase(props) {
   const { currentUser } = useAuth();
   const [item, setItem] = useState({});
   const [loading, setLoading] = useState(true);
+  const classes = useStyles();
 
   useEffect(() => {
     axios
@@ -58,7 +69,7 @@ export default function Purchase(props) {
   return (
     <div>
       <h1>Review Your Order</h1>
-      {!loading && (
+      {!loading ? (
         <>
           <ItemsListCard item={item} />
           <h2 className="purchase-info-header">Next Steps</h2>
@@ -80,6 +91,10 @@ export default function Purchase(props) {
             Donate
           </button>
         </>
+      ) : (
+        <Backdrop className={classes.backdrop} open={true}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
       )}
     </div>
   );

@@ -4,6 +4,16 @@ import ItemsListCard from '../components/ItemsListCard';
 import axios from 'axios';
 import Pagination from '../components/Pagination';
 import { navigate } from '@reach/router';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = (theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+});
 
 class LandingPage extends Component {
   state = {
@@ -59,7 +69,8 @@ class LandingPage extends Component {
   };
 
   render() {
-    const { items, itemCount, page, sortBy } = this.state;
+    const { items, itemCount, page, sortBy, isLoading } = this.state;
+    const { classes } = this.props;
     const articlesPerPage = 10;
     const pageCount = Math.ceil(itemCount / articlesPerPage);
     const atStart = page === 1;
@@ -67,75 +78,80 @@ class LandingPage extends Component {
     const pages = Array.from({ length: pageCount }).map((item, i) => i + 1);
     return (
       <section>
-        <div className="navigationButtons">
-          <button
-            onClick={() => {
-              navigate('/about');
-            }}
-          >
-            How It Works
-          </button>
-          <button
-            onClick={() => {
-              navigate('/post_item');
-            }}
-          >
-            Sell an Item
-          </button>
-        </div>
-        <div className="sort-data-wrapper">
-        
-          <select defaultValue={""} onChange={this.handleFilter}>
-            <option disabled value="">
-              -- Filter By --
-            </option>
-            <option value="Toys">Toys</option>
-            <option value="Clothes">Clothes</option>
-            <option value="Kitchenware">Kitchenware</option>
-            <option value="Books">Books</option>
-            <option value="Garden">Garden</option>
-            <option value="Electronics">Electronics</option>
-          </select>
-          <select defaultValue={""} onChange={this.handleSort}>
-            <option disabled value="">
-              -- Sort By --
-            </option>
-            <option value="thumbnail_img_ref">Date</option>
-            <option value="price">Price</option>
-          </select>
-          {sortBy === "thumbnail_img_ref" && (
-            <select defaultValue={""} onChange={this.handleOrder}>
+        {isLoading ? (
+          <Backdrop className={classes.backdrop} open={true}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        ) : (
+          <div className="navigationButtons">
+            <button
+              onClick={() => {
+                navigate('/about');
+              }}
+            >
+              How It Works
+            </button>
+            <button
+              onClick={() => {
+                navigate('/post_item');
+              }}
+            >
+              Sell an Item
+            </button>
+            <select defaultValue={''} onChange={this.handleFilter}>
               <option disabled value="">
-                -- Order --
+                -- Filter By --
               </option>
-              <option value="desc">Most recent</option>
-              <option value="asc">Oldest</option>
+              <option value="Toys">Toys</option>
+              <option value="Clothes">Clothes</option>
+              <option value="Kitchenware">Kitchenware</option>
+              <option value="Books">Books</option>
+              <option value="Garden">Garden</option>
+              <option value="Electronics">Electronics</option>
             </select>
-          )}
-          {sortBy === "price" && (
-            <select defaultValue={""} onChange={this.handleOrder}>
-              <option disabled value="">
-                -- Order --
-              </option>
-              <option value="desc">Highest</option>
-              <option value="asc">Lowest</option>
-            </select>
-          )}
-        </div>
+            <select defaultValue={''} onChange={this.handleSort}>
 
+              <option disabled value="">
+                -- Sort By --
+              </option>
+              <option value="thumbnail_img_ref">Date</option>
+              <option value="price">Price</option>
+            </select>
+            {sortBy === 'thumbnail_img_ref' && (
+              <select defaultValue={''} onChange={this.handleOrder}>
+                <option disabled value="">
+                  -- Order --
+                </option>
+                <option value="desc">Most recent</option>
+                <option value="asc">Oldest</option>
+              </select>
+            )}
+            {sortBy === 'price' && (
+              <select defaultValue={''} onChange={this.handleOrder}>
+                <option disabled value="">
+                  -- Order --
+                </option>
+                <option value="desc">Highest</option>
+                <option value="asc">Lowest</option>
+              </select>
+            )}
+          </div>
+        )}
         {items.map((item) => {
           return <ItemsListCard key={item.item_id} item={item} />;
         })}
-        <Pagination
-          page={page}
-          atStart={atStart}
-          atEnd={atEnd}
-          pages={pages}
-          changePage={this.changePage}
-        />
+        {!isLoading && (
+          <Pagination
+            page={page}
+            atStart={atStart}
+            atEnd={atEnd}
+            pages={pages}
+            changePage={this.changePage}
+          />
+        )}
       </section>
     );
   }
 }
 
-export default LandingPage;
+export default withStyles(styles)(LandingPage);
