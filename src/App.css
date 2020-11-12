@@ -98,14 +98,15 @@
 .individualItem-container {
   font-family: "Roboto", sans-serif;
 }
+
 .individualItem-card {
   margin: 2em;
 }
+
 .individualItem-item-image {
-  width: 300px;
-  height: 300px;
   border-radius: 12px;
 }
+
 @media only screen and (max-width: 330px) {
   .individualItem-item-image {
     width: 200px;
@@ -238,7 +239,7 @@
   text-align: start;
   text-decoration: none;
   color: #000;
-  margin: 0.2rem 0;
+  margin: 0.2rem 0.4rem;
 }
 .itemsListTitle :nth-child(2) {
   font-weight: bold;
@@ -274,6 +275,35 @@
   color: #fff;
   transform: translateY(-3px);
 }
+
+.sort-data-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.pagination {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.p-button {
+  border: 2px solid gray;
+  color: black;
+  background-color: rgb(250, 237, 205);
+  padding: 6px 12px;
+  text-decoration: none;
+}
+#button-background {
+  background-color: #99582a;
+  padding: 6px 12px;
+  margin: 2px;
+}
+#p-Button-background{
+     background: rgb(250,237,205);
+             padding: 6px 12px;
+             margin: 2px;
+}
+
 /* Footer styling */
 footer {
   display: flex;
@@ -298,8 +328,8 @@ footer {
 }
 
 .thumbnailImageStyle {
-  max-width: 120px;
-  max-height: 120px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 /*post-page*/
@@ -330,6 +360,26 @@ input[type="email"] {
   box-sizing: border-box;
   resize: vertical;
 }
+
+input[type="number"] {
+  width: 80%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  resize: vertical;
+}
+input[type="file"] {
+  width: 80%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  resize: vertical;
+}
+/* customize input file **/
 
 /* input[type="checkbox"] {
   width: 50%;
@@ -624,7 +674,8 @@ form {
 }
 
 @media screen and (max-width: 600px) {
-  .login-container {
+  .login-container 
+  {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -648,7 +699,12 @@ form {
     margin: 0;
     grid-template-columns: 81% 1rem;
   }
+  /****************dashboard ****************/
+  .itemsListPrice {
+    font-size: 1rem;
+  }
 }
+
 
 .charityDisplay-btn {
   justify-self: start;
@@ -657,9 +713,84 @@ form {
   margin: 1em 0 2rem 0;
   border-radius: 12px;
   padding: 0.8rem;
+
+/************************** dashboard big screen***********************/
+.item-list-wrapper {
+  display: flex;
+  flex: 0 0 1em;
+}
+.item-descp-wraper{
+  text-align: justify;
+}
+.dashboard-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.dashboard-wrapper .action-button {
+  background-color: #ee7d59;
+  margin-top: 0.7rem;
+  border-radius: 10px;
+  height: 50px;
+  width: 70px;
+  font-size: 1rem;
+}
+.dashboard-btns {
+  background-color: #faedcd;
+  font-size: 0.8rem;
+  margin: 1rem 0 1rem 0;
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+
   border: none;
   transition: all 0.3s ease 0s;
   font-weight: bold;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+
+.dashboard-btns:hover {
+  color: #ffffff;
+  background-color: #d4a373;
+  box-shadow: 0px 15px 20px rgba(204, 213, 174, 0.4);
+  color: #fff;
+  transform: translateY(-3px);
+}
+.dashboard-btns:focus {
+  outline: none;
+  background-color: #d4a373;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dashboard-head {
+  margin-top: 2rem;
+}
+
+.dashboard-header {
+  color: #d4a373;
+  text-align: left;
+  margin-left: 1.2rem;
+}
+
+.reserve-paragraph {
+  text-align: left;
+  margin: 0.6rem 0 1rem 1.2rem;
+}
+
+.purchase-info-header {
+  text-align: left;
+  margin: 1.6rem 0 1rem 1.2rem;
+}
+
+.purchase-instructions {
+  text-align: left;
+  margin: 0.6rem 1.2rem;
+}
+
+.review-head {
+  margin: 2rem 0 1rem 0;
+}
+
