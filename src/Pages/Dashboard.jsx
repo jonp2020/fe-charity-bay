@@ -165,8 +165,8 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <>
-                    <ItemsListCard key={item.item_id} item={item} />
+                  <div key={item.item_id}>
+                    <ItemsListCard item={item} />
                     <button
                       className="action-button"
                       onClick={() => {
@@ -177,7 +177,7 @@ export default function Dashboard() {
                     >
                       Purchase
                     </button>
-                  </>
+                  </div>
                 );
               })}
             </ul>
@@ -205,8 +205,8 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <>
-                    <ItemsListCard key={item.item_id} item={item} />
+                  <div key={item.item_id}>
+                    <ItemsListCard item={item} />
                     <button
                       className="action-button"
                       onClick={() => {
@@ -216,7 +216,7 @@ export default function Dashboard() {
                     >
                       Delete
                     </button>
-                  </>
+                  </div>
                 );
               })}
             </ul>
