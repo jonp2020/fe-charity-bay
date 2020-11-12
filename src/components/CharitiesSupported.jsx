@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default class CharitiesSupported extends Component {
+export default class CharitiesSupported extends React.Component {
   state = {
     charities: [],
     isLoading: true,
@@ -10,8 +11,8 @@ export default class CharitiesSupported extends Component {
   componentDidMount = () => {
     axios
       .get("https://charity-bay-be.herokuapp.com/api/charities")
-      .then(({ data }) => {
-        this.setState({ charities: data, isLoading: false });
+      .then(({ data: { charities } }) => {
+        this.setState({ charities: charities, isLoading: false });
       });
   };
 
@@ -41,27 +42,25 @@ export default class CharitiesSupported extends Component {
 }
 
 // export default function CharitiesSupported() {
-//   const [charities, setCharities] = useState([]);
+//   const [charitiesData, setCharitiesData] = useState([]);
 //   const [loading, setLoading] = useState(true);
 
 //   useEffect(() => {
 //     axios
 //       .get("https://charity-bay-be.herokuapp.com/api/charities")
-//       .then(({ data }) => {
-//         console.log("result of data", data);
-//         setCharities();
-//         console.log("charities", charities);
+//       .then(({ data: { charities } }) => {
+//         console.log("result of data", charities);
+//         // setCharitiesData(charities);
+//         console.log("charities", charitiesData);
 //       })
-//       .then(() => {
-//       });
-//   }, []);
+//       .then(() => {});
+//   });
 
 //   return (
 //     <div>
-
 //       <h1>Current list of charities you can donate to.</h1>
 //       <div>IMAGE</div>
-//       <p>Charities here:</p>
+//       <p>Charities here: {}</p>
 //       <button>Show more</button>
 //       <p>Further details of charity</p>
 //       <button>Show less</button>
