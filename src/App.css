@@ -11,6 +11,11 @@
   text-align: center;
   min-height: 100vh;
 }
+
+.lobster-font {
+  font-family: "Lobster Two", cursive;
+  font-style: italic;
+}
 .header {
   color: #99582a;
   font-style: italic;
@@ -18,6 +23,7 @@
   font-size: 30px;
   text-decoration: none;
 }
+
 .header h1 {
   font-family: "Lobster Two", cursive;
 }
@@ -297,10 +303,9 @@ footer {
 }
 
 /*post-page*/
-input[type='text'],
+input[type="text"],
 select,
 textarea {
-
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -326,7 +331,6 @@ input[type="email"] {
   resize: vertical;
 }
 
-
 /* input[type="checkbox"] {
   width: 50%;
   padding: 12px;
@@ -336,7 +340,6 @@ input[type="email"] {
   resize: vertical;
 } */
 
-
 label {
   padding: 12px 12px 12px 0;
   /* display: inline-block; */
@@ -345,7 +348,7 @@ label {
   float: right;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   background-color: #4caf50;
   color: white;
   padding: 12px 20px;
@@ -370,14 +373,14 @@ input[type='submit'] {
   margin-top: 6px;
 }
 .row:after {
-  content: '';
+  content: "";
   display: table;
   clear: both;
 }
 @media screen and (max-width: 600px) {
   .col-25,
   .col-75,
-  input[type='submit'] {
+  input[type="submit"] {
     width: 100%;
     margin-top: 0;
   }
@@ -396,7 +399,6 @@ input[type='submit'] {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .item-image {
   display: flex;
@@ -433,7 +435,6 @@ form {
     align-items: center;
   }
 }
-
 
 /* .login-container {
   
@@ -541,6 +542,87 @@ form {
   color: #99582a;
 }
 
+/* About pages */
+
+.about-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.about-btn {
+  background: none;
+  font-size: 0.9rem;
+  margin: 1em;
+  padding: 0.8rem;
+  border: none;
+  transition: all 0.3s ease 0s;
+  font-weight: bold;
+  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+  cursor: pointer;
+}
+
+.about-btn:hover {
+  color: #99582a;
+}
+
+.about-btn:focus {
+  outline: none;
+}
+
+.about-btn-active {
+  color: #99582a;
+}
+
+.carousel-container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.carousel-btn {
+  background-color: #ccd5ae;
+  margin: 0 1rem 2rem 1rem;
+  border-radius: 40%;
+  padding: 0.5rem;
+  border: none;
+  transition: all 0.3s ease 0s;
+  font-weight: bold;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.carousel-btn:hover {
+  color: #ffffff;
+  background-color: #d4a373;
+  box-shadow: 0px 15px 20px rgba(204, 213, 174, 0.4);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.carousel-btn:focus {
+  outline: none;
+}
+
+.carousel-slider {
+  margin: 3rem;
+}
+
+.showLess {
+  display: none;
+}
+
+.showMore {
+  display: block;
+}
+
+.charityCardWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 600px) {
   .login-container {
     display: flex;
@@ -568,3 +650,16 @@ form {
   }
 }
 
+.charityDisplay-btn {
+  justify-self: start;
+  display: inline-block;
+  background-color: #ccd5ae;
+  margin: 1em 0 2rem 0;
+  border-radius: 12px;
+  padding: 0.8rem;
+  border: none;
+  transition: all 0.3s ease 0s;
+  font-weight: bold;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
