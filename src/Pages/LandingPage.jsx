@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import ItemsListCard from '../components/ItemsListCard';
 import axios from 'axios';
@@ -9,9 +10,9 @@ class LandingPage extends Component {
     items: [],
     page: 1,
     isLoading: true,
-    order: 'desc',
+    order: "desc",
     category: undefined,
-    sortBy: 'thumbnail_img_ref',
+    sortBy: "thumbnail_img_ref",
   };
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class LandingPage extends Component {
       prevState.sortBy !== sortBy
     ) {
       return axios
-        .get('https://charity-bay-be.herokuapp.com/api/items', {
+        .get("https://charity-bay-be.herokuapp.com/api/items", {
           params: { p: page, order: order, category, sortBy },
         })
         .then(({ data: { items, itemCount } }) => {
@@ -81,7 +82,10 @@ class LandingPage extends Component {
           >
             Sell an Item
           </button>
-          <select defaultValue={''} onChange={this.handleFilter}>
+        </div>
+        <div className="sort-data-wrapper">
+        
+          <select defaultValue={""} onChange={this.handleFilter}>
             <option disabled value="">
               -- Filter By --
             </option>
@@ -92,15 +96,15 @@ class LandingPage extends Component {
             <option value="Garden">Garden</option>
             <option value="Electronics">Electronics</option>
           </select>
-          <select defaultValue={''} onChange={this.handleSort}>
+          <select defaultValue={""} onChange={this.handleSort}>
             <option disabled value="">
               -- Sort By --
             </option>
             <option value="thumbnail_img_ref">Date</option>
             <option value="price">Price</option>
           </select>
-          {sortBy === 'thumbnail_img_ref' && (
-            <select defaultValue={''} onChange={this.handleOrder}>
+          {sortBy === "thumbnail_img_ref" && (
+            <select defaultValue={""} onChange={this.handleOrder}>
               <option disabled value="">
                 -- Order --
               </option>
@@ -108,8 +112,8 @@ class LandingPage extends Component {
               <option value="asc">Oldest</option>
             </select>
           )}
-          {sortBy === 'price' && (
-            <select defaultValue={''} onChange={this.handleOrder}>
+          {sortBy === "price" && (
+            <select defaultValue={""} onChange={this.handleOrder}>
               <option disabled value="">
                 -- Order --
               </option>
