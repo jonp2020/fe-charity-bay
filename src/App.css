@@ -296,6 +296,7 @@
 }
 #button-background {
   background-color: #99582a;
+  color: white;
   border: none;
   border-radius: 3px;
   padding: 6px 12px;
