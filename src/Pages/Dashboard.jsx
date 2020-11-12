@@ -150,8 +150,8 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <>
-                    <ItemsListCard key={item.item_id} item={item} />
+                  <div className="dashboard-wrapper">
+                    <ItemsListCard key={item.item_id} item={item} className="" />
                     <button
                       className="action-button"
                       onClick={() => {
@@ -160,9 +160,9 @@ export default function Dashboard() {
                         handleMail(item);
                       }}
                     >
-                      Purchase
+                    Confirm Purchase
                     </button>
-                  </>
+                  </div>
                 );
               })}
             </ul>

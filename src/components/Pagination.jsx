@@ -21,17 +21,11 @@ export default function Pagination({
       </button>
       {pages.map((singlePage) => (
         <button
-          style={{
-            background: "rgb(250,237,205)",
-            padding:'6px 12px',
-            margin: "2px"
-          }}
-          className="p-button"
           key={singlePage}
           onClick={() => {
             changePage(singlePage);
           }}
-          className={page === singlePage ? "button-background" : null}
+          id={page === singlePage ? "button-background" : "p-Button-background"}
         >
           {singlePage}
         </button>
