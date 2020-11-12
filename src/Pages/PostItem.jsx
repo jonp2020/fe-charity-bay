@@ -236,7 +236,14 @@ export default function PostItem() {
             <label htmlFor="image">Picture</label>
           </div>
           <div className="col-75">
-            <input type="file" id="image" name="image" required ref={fileRef} />
+            <input
+              type="file"
+              id="image"
+              name="image"
+              required
+              ref={fileRef}
+              accept="image/jpeg,image/x-png,image/gif"
+            />
           </div>
         </div>
         <button disabled={loading}>Submit</button>
