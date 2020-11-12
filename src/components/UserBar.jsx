@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { Link, navigate } from "@reach/router";
+import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { Link, navigate } from '@reach/router';
 
 export default function UserBar({ location }) {
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState();
 
   async function handleLogout() {
-    setError("");
+    setError('');
 
     try {
       await logout();
-      navigate("/login");
+      navigate('/login');
     } catch {
-      setError("Failed to log out");
+      setError('Failed to log out');
     }
   }
 
@@ -27,6 +27,14 @@ export default function UserBar({ location }) {
           </p>
         </div>
         <div className="user-bar-loggedIn-btn-wrapper">
+          <button
+            className="user-bar-loggedIn-btn"
+            onClick={() => {
+              navigate('/dashboard');
+            }}
+          >
+            Dashboard
+          </button>
           <button className="user-bar-loggedIn-btn" onClick={handleLogout}>
             Log Out
           </button>
@@ -35,7 +43,7 @@ export default function UserBar({ location }) {
       </div>
     );
   }
-  if (location.pathname === "/signup") {
+  if (location.pathname === '/signup') {
     return (
       <div className="user-bar">
         <Link className="user-bar-login-out" to="/login">
@@ -44,7 +52,7 @@ export default function UserBar({ location }) {
       </div>
     );
   }
-  if (location.pathname === "/login") {
+  if (location.pathname === '/login') {
     return (
       <div className="user-bar">
         <Link className="user-bar-login-out" to="/signup">
@@ -57,7 +65,7 @@ export default function UserBar({ location }) {
     <div className="user-bar">
       <Link className="user-bar-login-out" to="/login">
         Log In
-      </Link>{" "}
+      </Link>{' '}
       <Link className="user-bar-login-out" to="/signup">
         Sign Up
       </Link>

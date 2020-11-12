@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import ItemsListCard from "../components/ItemsListCard";
-import axios from "axios";
-import Pagination from "../components/Pagination";
-import { Link } from "@reach/router";
+
+import React, { Component } from 'react';
+import ItemsListCard from '../components/ItemsListCard';
+import axios from 'axios';
+import Pagination from '../components/Pagination';
+import { navigate } from '@reach/router';
+
 class LandingPage extends Component {
   state = {
     items: [],
@@ -66,11 +68,19 @@ class LandingPage extends Component {
     return (
       <section>
         <div className="navigationButtons">
-          <button>
-            <Link to="/about">How It Works</Link>
+          <button
+            onClick={() => {
+              navigate('/about');
+            }}
+          >
+            How It Works
           </button>
-          <button>
-            <Link to="/post_item">Sell an Item</Link>
+          <button
+            onClick={() => {
+              navigate('/post_item');
+            }}
+          >
+            Sell an Item
           </button>
         </div>
         <div className="sort-data-wrapper">
