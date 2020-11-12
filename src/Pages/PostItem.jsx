@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { RegionDropdown } from 'react-country-region-selector';
-import Resizer from 'react-image-file-resizer';
-import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
-import { navigate } from '@reach/router';
+import React, { useState, useRef } from "react";
+import { RegionDropdown } from "react-country-region-selector";
+import Resizer from "react-image-file-resizer";
+import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
+import { navigate } from "@reach/router";
 
 export default function PostItem() {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
   const charityRef = useRef();
   const categoryRef = useRef();
@@ -22,13 +22,13 @@ export default function PostItem() {
         file,
         120,
         120,
-        'JPEG',
+        "JPEG",
         80,
         0,
         (uri) => {
           resolve(uri);
         },
-        'base64'
+        "base64"
       );
     });
   }
@@ -38,18 +38,18 @@ export default function PostItem() {
         file,
         300,
         300,
-        'JPEG',
+        "JPEG",
         80,
         0,
         (uri) => {
           resolve(uri);
         },
-        'base64'
+        "base64"
       );
     });
   }
   function dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(','),
+    var arr = dataurl.split(","),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),
       n = bstr.length,
@@ -70,35 +70,35 @@ export default function PostItem() {
     setLoading(true);
     const file = fileRef.current.files;
     if (!file) {
-      throw new Error('Select a file first!');
+      throw new Error("Select a file first!");
     }
     //refactor using async/await
     return Promise.all([
       resizeThumbnailFile(file[0]),
       resizeFullSizeFile(file[0]),
     ]).then(([thumbnailRes, fullsizeRes]) => {
-      const thumbnailFile = dataURLtoFile(thumbnailRes, 'thumbImage.jpeg');
-      const fullsizeFile = dataURLtoFile(fullsizeRes, 'fullImage.jpeg');
+      const thumbnailFile = dataURLtoFile(thumbnailRes, "thumbImage.jpeg");
+      const fullsizeFile = dataURLtoFile(fullsizeRes, "fullImage.jpeg");
       const thumbnailForm = new FormData();
       const fullsizeForm = new FormData();
-      thumbnailForm.append('file', thumbnailFile);
-      fullsizeForm.append('file', fullsizeFile);
+      thumbnailForm.append("file", thumbnailFile);
+      fullsizeForm.append("file", fullsizeFile);
       return Promise.all([
         axios.post(
-          'https://charity-bay-be.herokuapp.com/api/image',
+          "https://charity-bay-be.herokuapp.com/api/image",
           thumbnailForm,
           {
             headers: {
-              'Content-Type': 'multipart/form-data',
+              "Content-Type": "multipart/form-data",
             },
           }
         ),
         axios.post(
-          'https://charity-bay-be.herokuapp.com/api/image',
+          "https://charity-bay-be.herokuapp.com/api/image",
           fullsizeForm,
           {
             headers: {
-              'Content-Type': 'multipart/form-data',
+              "Content-Type": "multipart/form-data",
             },
           }
         ),
@@ -110,7 +110,7 @@ export default function PostItem() {
           const thumbnail_img_ref = thumbnailImage.data.image.key;
           const fullsize_img_ref = fullsizeImage.data.image.key;
           const seller_username = user.data.user.username;
-          return axios.post('https://charity-bay-be.herokuapp.com/api/items', {
+          return axios.post("https://charity-bay-be.herokuapp.com/api/items", {
             thumbnail_img_ref,
             fullsize_img_ref,
             seller_username,
@@ -137,7 +137,6 @@ export default function PostItem() {
 
   return (
     <section>
-      <h1>Post an Item</h1>
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-25">
@@ -193,7 +192,7 @@ export default function PostItem() {
           <div className="col-75">
             <RegionDropdown
               id="location"
-              country={'United Kingdom'}
+              country={"United Kingdom"}
               value={location}
               required
               onChange={(val) => selectRegion(val)}
@@ -235,10 +234,20 @@ export default function PostItem() {
             <label htmlFor="image">Picture</label>
           </div>
           <div className="col-75">
-            <input type="file" id="image" name="image" required ref={fileRef} />
+            <input
+              class="custom-file-input"
+              type="file"
+              id="image"
+              name="image"
+              
+              required
+              ref={fileRef}
+            />
           </div>
         </div>
-        <button disabled={loading}>Submit</button>
+        <button className="sign-up-login-btn" disabled={loading}>
+          Submit
+        </button>
       </form>
     </section>
   );
