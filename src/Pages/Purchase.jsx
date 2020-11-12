@@ -13,7 +13,6 @@ export default function Purchase(props) {
     axios
       .get(`https://charity-bay-be.herokuapp.com/api/items/${props.item_id}`)
       .then(({ data: { item } }) => {
-        console.log(item);
         setItem(item);
         setLoading(false);
       });
@@ -29,10 +28,31 @@ export default function Purchase(props) {
       `https://charity-bay-be.herokuapp.com/api/items/${props.item_id}`,
       { status: 'reserved', buyer: user.username }
     );
-    // conditional statement to navigate to correct link
-    navigate(
-      'http://link.justgiving.com/v1/charity/donate/charityId/11496?amount=2.00&currency=GBP&reference=Age2&exitUrl=http%3A%2F%2Flocalhost%3A3000%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID'
-    );
+    item.charity_id === 1
+      ? navigate(
+          'http://link.justgiving.com/v1/charity/donate/charityId/11496?amount=20.00&currency=GBP&reference=AgeUK&exitUrl=https%3A%2F%2Fcharity-bay.netlify.app%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID'
+        )
+      : item.charity_id === 2
+      ? navigate(
+          'http://link.justgiving.com/v1/charity/donate/charityId/66?amount=20.00&currency=GBP&reference=Crisis&exitUrl=https%3A%2F%2Fcharity-bay.netlify.app%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID'
+        )
+      : item.charity_id === 3
+      ? navigate(
+          'http://link.justgiving.com/v1/charity/donate/charityId/11033?amount=20.00&currency=GBP&reference=BRC&exitUrl=https%3A%2F%2Fcharity-bay.netlify.app%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID'
+        )
+      : item.charity_id === 4
+      ? navigate(
+          'http://link.justgiving.com/v1/charity/donate/charityId/107651?amount=20.00&currency=GBP&reference=WA&exitUrl=https%3A%2F%2Fcharity-bay.netlify.app%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID'
+        )
+      : item.charity_id === 5
+      ? navigate(
+          'http://link.justgiving.com/v1/charity/donate/charityId/182158?amount=20.00&currency=GBP&reference=FS&exitUrl=https%3A%2F%2Fcharity-bay.netlify.app%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID'
+        )
+      : item.charity_id === 6
+      ? navigate(
+          'http://link.justgiving.com/v1/charity/donate/charityId/2808218?amount=20.00&currency=GBP&reference=NHS&exitUrl=https%3A%2F%2Fcharity-bay.netlify.app%2Fdashboard%3FjgDonationId%3DJUSTGIVING-DONATION-ID'
+        )
+      : navigate('https://charity-bay.netlify.app/');
   }
 
   return (
