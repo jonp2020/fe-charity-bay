@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
 .App {
@@ -13,7 +13,7 @@
 }
 
 .lobster-font {
-  font-family: "Lobster Two", cursive;
+  font-family: 'Lobster Two', cursive;
   font-style: italic;
 }
 .header {
@@ -25,7 +25,7 @@
 }
 
 .header h1 {
-  font-family: "Lobster Two", cursive;
+  font-family: 'Lobster Two', cursive;
 }
 .user-bar {
   display: flex;
@@ -96,7 +96,7 @@
   flex: 1;
 }
 .individualItem-container {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .individualItem-card {
@@ -153,7 +153,7 @@
   background-color: #d4a373;
 }
 .project-title-footer {
-  font-family: "Lobster Two", cursive;
+  font-family: 'Lobster Two', cursive;
   font-style: italic;
   text-decoration: none;
   color: #ffffff;
@@ -298,10 +298,10 @@
   padding: 6px 12px;
   margin: 2px;
 }
-#p-Button-background{
-     background: rgb(250,237,205);
-             padding: 6px 12px;
-             margin: 2px;
+#p-Button-background {
+  background: rgb(250, 237, 205);
+  padding: 6px 12px;
+  margin: 2px;
 }
 
 /* Footer styling */
@@ -333,7 +333,7 @@ footer {
 }
 
 /*post-page*/
-input[type="text"],
+input[type='text'],
 select,
 textarea {
   width: 80%;
@@ -343,7 +343,7 @@ textarea {
   box-sizing: border-box;
   resize: vertical;
 }
-input[type="password"] {
+input[type='password'] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -352,7 +352,7 @@ input[type="password"] {
   resize: vertical;
 }
 
-input[type="email"] {
+input[type='email'] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -361,7 +361,7 @@ input[type="email"] {
   resize: vertical;
 }
 
-input[type="number"] {
+input[type='number'] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -370,7 +370,7 @@ input[type="number"] {
   font-size: 1rem;
   resize: vertical;
 }
-input[type="file"] {
+input[type='file'] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -398,7 +398,7 @@ label {
   float: right;
 }
 
-input[type="submit"] {
+input[type='submit'] {
   background-color: #4caf50;
   color: white;
   padding: 12px 20px;
@@ -423,14 +423,14 @@ input[type="submit"] {
   margin-top: 6px;
 }
 .row:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
 @media screen and (max-width: 600px) {
   .col-25,
   .col-75,
-  input[type="submit"] {
+  input[type='submit'] {
     width: 100%;
     margin-top: 0;
   }
@@ -624,12 +624,6 @@ form {
   color: #99582a;
 }
 
-.carousel-container {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-}
-
 .carousel-btn {
   background-color: #ccd5ae;
   margin: 0 1rem 2rem 1rem;
@@ -668,14 +662,14 @@ form {
 
 .charityCardWrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
+  margin: 1rem 0;
 }
 
 @media screen and (max-width: 600px) {
-  .login-container 
-  {
+  .login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -705,21 +699,27 @@ form {
   }
 }
 
-
 .charityDisplay-btn {
-  justify-self: start;
+  justify-self: end;
   display: inline-block;
   background-color: #ccd5ae;
-  margin: 1em 0 2rem 0;
+  margin: 1em 25rem 2rem 1rem;
   border-radius: 12px;
   padding: 0.8rem;
+}
+
+.charity-image {
+  margin-left: 25rem;
+  max-width: 200px;
+  max-height: 200px;
+}
 
 /************************** dashboard big screen***********************/
 .item-list-wrapper {
   display: flex;
   flex: 0 0 1em;
 }
-.item-descp-wraper{
+.item-descp-wraper {
   text-align: justify;
 }
 .dashboard-wrapper {
@@ -794,3 +794,22 @@ form {
   margin: 2rem 0 1rem 0;
 }
 
+.first-and-fifth {
+  border-radius: 12px;
+  background-color: #ccd5ae;
+}
+
+.second-and-sixth {
+  border-radius: 12px;
+  background-color: rgb(250, 237, 205);
+}
+
+.third-and-seventh {
+  border-radius: 12px;
+  background-color: #d4a373;
+}
+
+.fourth-and-eighth {
+  border-radius: 12px;
+  background-color: #e9edc9;
+}
