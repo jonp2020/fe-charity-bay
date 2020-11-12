@@ -68,28 +68,35 @@ export default function Purchase(props) {
 
   return (
     <div>
-      <h1>Review Your Order</h1>
+      <h1 className="review-head">Review Your Order</h1>
       {!loading ? (
         <>
-          <ItemsListCard item={item} />
-          <h2 className="purchase-info-header">Next Steps</h2>
-          <p className="purchase-instructions">
-            1. Once you click the 'Donate' button below, you will be taken to
-            the JustGiving donate page for the charity selected by the seller.
-            Please amend the donation amount to match the price of your item.
-          </p>
-          <p className="purchase-instructions">
-            2. After you have completed your donation, you will be redirected to
-            your CharityBay dashboard.
-          </p>
-          <p className="purchase-instructions">
-            3. On your dashboard, in <strong>Reserved Items</strong>, you can
-            complete the purchase process by clicking the 'Confirm Purchase'
-            button to notify the seller.
-          </p>
-          <button className="donate-btn" onClick={handleReserve}>
-            Donate
-          </button>
+          {item.status === 'available' ? (
+            <>
+              <ItemsListCard item={item} />
+              <h2 className="purchase-info-header">Next Steps</h2>
+              <p className="purchase-instructions">
+                1. Once you click the 'Donate' button below, you will be taken
+                to the JustGiving donate page for the charity selected by the
+                seller. Please amend the donation amount to match the price of
+                your item.
+              </p>
+              <p className="purchase-instructions">
+                2. After you have completed your donation, you will be
+                redirected to your CharityBay dashboard.
+              </p>
+              <p className="purchase-instructions">
+                3. On your dashboard, in <strong>Reserved Items</strong>, you
+                can complete the purchase process by clicking the 'Confirm
+                Purchase' button to notify the seller.
+              </p>
+              <button className="donate-btn" onClick={handleReserve}>
+                Donate
+              </button>
+            </>
+          ) : (
+            <p>This item has already been purchased. Sorry!</p>
+          )}
         </>
       ) : (
         <Backdrop className={classes.backdrop} open={true}>

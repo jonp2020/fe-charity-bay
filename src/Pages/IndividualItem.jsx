@@ -79,9 +79,11 @@ class IndividualItem extends Component {
             <p className="individualItem-desktop-info">
               Money for this item will be donated to <strong>{charity}</strong>
             </p>
-            <Link className="donate-btn" to={`/purchase/${item.item_id}`}>
-              <button className="donate-btn">Click to buy and donate</button>
-            </Link>
+            {item.status === 'available' ? (
+              <Link className="donate-btn" to={`/purchase/${item.item_id}`}>
+                <button className="donate-btn">Click to buy and donate</button>
+              </Link>
+            ) : null}
           </section>
         )}
       </div>
