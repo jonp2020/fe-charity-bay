@@ -1,4 +1,5 @@
-import React from 'react';
+import { red } from "@material-ui/core/colors";
+import React from "react";
 
 export default function Pagination({
   page,
@@ -8,14 +9,15 @@ export default function Pagination({
   changePage,
 }) {
   return (
-    <div>
+    <div className="paggination">
       <button
+        className="p-button"
         disabled={atStart}
         onClick={() => {
           changePage(page - 1);
         }}
       >
-        {'<'}
+        {"<"}
       </button>
       {pages.map((singlePage) => (
         <button
@@ -23,18 +25,19 @@ export default function Pagination({
           onClick={() => {
             changePage(singlePage);
           }}
-          className={page === singlePage ? 'button-background' : null}
+          id={page === singlePage ? "button-background" : "p-Button-background"}
         >
           {singlePage}
         </button>
       ))}
       <button
+        className="p-button"
         disabled={atEnd}
         onClick={() => {
           changePage(page + 1);
         }}
       >
-        {'>'}
+        {">"}
       </button>
     </div>
   );

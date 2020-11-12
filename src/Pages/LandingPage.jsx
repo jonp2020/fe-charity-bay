@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import ItemsListCard from '../components/ItemsListCard';
 import axios from 'axios';
@@ -19,9 +20,9 @@ class LandingPage extends Component {
     items: [],
     page: 1,
     isLoading: true,
-    order: 'desc',
+    order: "desc",
     category: undefined,
-    sortBy: 'thumbnail_img_ref',
+    sortBy: "thumbnail_img_ref",
   };
 
   componentDidMount() {
@@ -42,7 +43,7 @@ class LandingPage extends Component {
       prevState.sortBy !== sortBy
     ) {
       return axios
-        .get('https://charity-bay-be.herokuapp.com/api/items', {
+        .get("https://charity-bay-be.herokuapp.com/api/items", {
           params: { p: page, order: order, category, sortBy },
         })
         .then(({ data: { items, itemCount } }) => {
@@ -109,6 +110,7 @@ class LandingPage extends Component {
               <option value="Electronics">Electronics</option>
             </select>
             <select defaultValue={''} onChange={this.handleSort}>
+
               <option disabled value="">
                 -- Sort By --
               </option>

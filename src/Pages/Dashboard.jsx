@@ -165,7 +165,8 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <div key={item.item_id}>
+
+                  <div key={item.item_id} className="dashboard-wrapper">
                     <ItemsListCard item={item} />
                     <button
                       className="action-button"
@@ -175,7 +176,7 @@ export default function Dashboard() {
                         handleMail(item);
                       }}
                     >
-                      Purchase
+                    Confirm Purchase
                     </button>
                   </div>
                 );
