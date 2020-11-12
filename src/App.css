@@ -287,7 +287,8 @@
   margin-bottom: 10px;
 }
 .p-button {
-  border: 2px solid gray;
+  border: none;
+  border-radius: 3px;
   color: black;
   background-color: rgb(250, 237, 205);
   padding: 6px 12px;
@@ -295,6 +296,8 @@
 }
 #button-background {
   background-color: #99582a;
+  border: none;
+  border-radius: 3px;
   padding: 6px 12px;
   margin: 2px;
 }

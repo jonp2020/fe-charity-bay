@@ -21,6 +21,7 @@ export default function Pagination({
       {pages.map((singlePage) => (
         <button
           key={singlePage}
+          className="p-button"
           onClick={() => {
             changePage(singlePage);
           }}
