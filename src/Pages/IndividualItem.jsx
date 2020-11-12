@@ -38,12 +38,13 @@ class IndividualItem extends Component {
 
   render() {
     const { item, charity } = this.state;
+    console.log(item.fullsize_img_ref);
     return (
       <section className="individualItem-container">
         <div className="individualItem-card">
           <img
             className="individualItem-item-image"
-            src={`${process.env.REACT_APP_S3_BUCKET}/${item.thumbnail_img_ref}`}
+            src={`${process.env.REACT_APP_S3_BUCKET}/${item.fullsize_img_ref}`}
             alt="individual-item"
           ></img>
           <div className="wrapping">

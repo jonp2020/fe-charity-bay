@@ -22,8 +22,8 @@ export default function PostItem() {
         file,
         120,
         120,
-        "JPEG",
-        80,
+        'JPEG',
+        100,
         0,
         (uri) => {
           resolve(uri);
@@ -36,10 +36,10 @@ export default function PostItem() {
     return new Promise((resolve) => {
       Resizer.imageFileResizer(
         file,
+        500,
         300,
-        300,
-        "JPEG",
-        80,
+        'JPEG',
+        100,
         0,
         (uri) => {
           resolve(uri);
@@ -73,6 +73,7 @@ export default function PostItem() {
       throw new Error("Select a file first!");
     }
     //refactor using async/await
+
     return Promise.all([
       resizeThumbnailFile(file[0]),
       resizeFullSizeFile(file[0]),
@@ -235,13 +236,13 @@ export default function PostItem() {
           </div>
           <div className="col-75">
             <input
-              class="custom-file-input"
+              className="custom-file-input"
               type="file"
               id="image"
-              name="image"
-              
+              name="image"              
               required
               ref={fileRef}
+              accept="image/jpeg,image/x-png,image/gif"
             />
           </div>
         </div>
