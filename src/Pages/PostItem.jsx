@@ -23,7 +23,7 @@ export default function PostItem() {
         120,
         120,
         'JPEG',
-        80,
+        100,
         0,
         (uri) => {
           resolve(uri);
@@ -39,7 +39,7 @@ export default function PostItem() {
         300,
         300,
         'JPEG',
-        80,
+        100,
         0,
         (uri) => {
           resolve(uri);
