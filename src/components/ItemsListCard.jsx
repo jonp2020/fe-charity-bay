@@ -33,7 +33,7 @@ const ItemsListCard = (props) => {
           to={`/item/${props.item.item_id}`}
           item={props.item}
         >
-          <p> £{props.item.price}</p>
+          <p> £{props.item.price}.00</p>
         </Link>
       </div>
     </section>

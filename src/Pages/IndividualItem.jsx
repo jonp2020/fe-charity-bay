@@ -6,24 +6,38 @@ class IndividualItem extends Component {
   state = {
     item: {},
     isLoading: true,
+    charity: '',
   };
 
   componentDidMount() {
-    return axios
-      .get(
+    return Promise.all([
+      axios.get(
         `https://charity-bay-be.herokuapp.com/api/items/${this.props.item_id}`
-      )
-      .then(({ data: { item } }) => {
-        this.setState({ item, isLoading: false });
-      });
+      ),
+      axios.get('https://charity-bay-be.herokuapp.com/api/charities'),
+    ]).then(
+      ([
+        {
+          data: { item },
+        },
+        {
+          data: { charities },
+        },
+      ]) => {
+        const requiredCharity = charities.find(
+          (charity) => charity.charity_id === item.charity_id
+        );
+        this.setState({
+          item,
+          charity: requiredCharity.name,
+          isLoading: false,
+        });
+      }
+    );
   }
 
-  handleChange = (event) => {
-    console.log(event.target);
-  };
-
   render() {
-    const { item } = this.state;
+    const { item, charity } = this.state;
     return (
       <section className="individualItem-container">
         <div className="individualItem-card">
@@ -40,12 +54,12 @@ class IndividualItem extends Component {
             <p className="individualItem-sellerUsername">
               Seller: {item.seller_username}
             </p>
-            <p className="individualItem-price-amount">£{item.price}</p>
+            <p className="individualItem-price-amount">£{item.price}.00</p>
           </div>
         </div>
         <p className="individualItem-desktop-description">{item.description}</p>
         <p className="individualItem-desktop-info">
-          Money for this item will be donated to <strong>Age Concern</strong>
+          Money for this item will be donated to <strong>{charity}</strong>
         </p>
         <Link className="donate-btn" to={`/purchase/${item.item_id}`}>
           <button className="donate-btn">Click to buy and donate</button>
