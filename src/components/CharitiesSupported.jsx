@@ -1,4 +1,3 @@
-// import React, { Component } from "react";
 import React from 'react';
 import axios from 'axios';
 import CharityInfo from './CharityInfo';
