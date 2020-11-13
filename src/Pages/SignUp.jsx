@@ -107,6 +107,7 @@ export default function SignUp() {
           </div>
           <div className="col-75">
             <input
+              placeholder=""
               id="passwordConf"
               type="password"
               ref={passwordConfRef}

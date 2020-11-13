@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import Image1 from '../images/1.png';
-import Image2 from '../images/2.png';
-import Image3 from '../images/3.png';
-import Image4 from '../images/4.png';
-import Image5 from '../images/5.png';
-import Image6 from '../images/6.png';
+import React, { Component } from "react";
+import Image1 from "../images/1.png";
+import Image2 from "../images/2.png";
+import Image3 from "../images/3.png";
+import Image4 from "../images/4.png";
+import Image5 from "../images/5.png";
+import Image6 from "../images/6.png";
 
 class CharityInfo extends Component {
   state = {
-    charityShowMore: 'showLess',
-    buttonText: 'Show More',
+    charityShowMore: "showLess",
+    buttonText: "More info",
   };
 
   handleDescription = () => {
     this.setState((currentState) => {
       return {
         charityShowMore:
-          currentState.charityShowMore === 'showLess' ? 'showMore' : 'showLess',
+          currentState.charityShowMore === "showLess" ? "showMore" : "showLess",
         buttonText:
-          currentState.buttonText === 'Show More' ? 'Show Less' : 'Show More',
+          currentState.buttonText === "More info" ? "Show less" : "More info",
       };
     });
   };
@@ -47,9 +47,11 @@ class CharityInfo extends Component {
             {this.state.buttonText}
           </button>
         </div>
-        <p className={this.state.charityShowMore}>
-          {this.props.charity.description}
-        </p>
+        <div className="showMoreText">
+          <p className={this.state.charityShowMore}>
+            {this.props.charity.description}
+          </p>
+        </div>
       </section>
     );
   }

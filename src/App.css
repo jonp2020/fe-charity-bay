@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
 .App {
@@ -13,7 +13,7 @@
 }
 
 .lobster-font {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-style: italic;
 }
 .header {
@@ -25,7 +25,7 @@
 }
 
 .header h1 {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
 }
 .user-bar {
   display: flex;
@@ -109,7 +109,7 @@
   flex-direction: column;
 }
 .individualItem-container {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .individualItem-card {
@@ -167,7 +167,7 @@
 }
 
 .project-title-footer {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-style: italic;
   text-decoration: none;
   color: #ffffff;
@@ -296,9 +296,6 @@
   border-radius: 12px;
   padding: 0.5rem;
   border: none;
-  transition: all 0.3s ease 0s;
-  font-weight: bold;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   align-self: center;
 }
@@ -306,16 +303,19 @@
 .itemsListPrice button:hover {
   color: #ffffff;
   background-color: #d4a373;
-  box-shadow: 0px 15px 20px rgba(204, 213, 174, 0.4);
   color: #fff;
   transform: translateY(-3px);
+}
+
+.itemsListPrice button:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 600px) {
   .itemsList {
     grid-template-columns: 170px 170px;
-    grid-template-rows: 1fr 0.7fr;
-    margin: 0;
+    grid-template-rows: 1fr 0.1fr;
+    margin: 0rem 0 0rem 0rem;
   }
 
   .itemsListPicture {
@@ -335,7 +335,7 @@
 
   .itemsListPrice {
     display: flex;
-    margin: -0.4rem 0 0 0;
+    margin: -1.5rem 0 1rem 0;
     grid-column: 2;
     align-self: start;
     justify-self: start;
@@ -344,6 +344,11 @@
   .itemsListPrice button {
     align-self: start;
     margin: 0 0 0 1rem;
+  }
+  .thumbnailImageStyle {
+    height: 120px;
+    width: 120px;
+    align-self: center;
   }
 }
 
@@ -369,6 +374,41 @@
   color: #fff;
 }
 
+.navigationButtons button:focus {
+  outline: none;
+}
+
+.dash-navigationButtons {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.dash-navigationButtons button {
+  margin: 0 0.8rem 0 0.8rem;
+  padding: 12px;
+  background-color: #faedcd;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+@media screen and (min-width: 601px) {
+  .dash-navigationButtons button {
+    width: 5rem;
+  }
+}
+
+.dash-navigationButtons button:hover {
+  background-color: #d4a373;
+  color: #fff;
+}
+
+.dash-navigationButtons button:focus {
+  outline: none;
+}
+
 .sort-data-items-wrapper {
   display: flex;
   margin: 0.5rem;
@@ -387,8 +427,20 @@
   border-radius: 6px;
 }
 
-.sort-data-item .sort-data-item-cats {
+.sort-data-item {
   text-align-last: center;
+}
+
+.sort-data-item-cats {
+  text-align-last: center;
+}
+.sort-data-item-age {
+  text-align-last: center;
+  text-align: center;
+}
+.sort-data-item-price {
+  text-align-last: center;
+  text-align: center;
 }
 
 .sort-data-item:hover {
@@ -403,13 +455,25 @@
 @media screen and (max-width: 600px) {
   .navigationButtons {
     display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
+  }
+  .dash-navigationButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .dash-navigationButtons {
+    justify-self: center;
   }
 
   .sort-data-items-wrapper {
     margin: 0.4rem;
   }
 }
+
 .pagination {
   display: inline-block;
   margin-bottom: 10px;
@@ -469,7 +533,32 @@ footer {
   max-height: 150px;
 }
 
-input[type='text'],
+/*post-page*/
+
+.post-item-header {
+  margin: 2rem;
+}
+
+.post-item-select-menu {
+  color: #2b2a28;
+  font-family: "Roboto", sans-serif;
+}
+.post-item-select-menu::placeholder {
+  color: #2b2a28;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.85rem;
+}
+.custom-file-input::placeholder {
+  color: #2b2a28;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.85rem;
+}
+
+.file-upload-button {
+  background-color: red;
+}
+
+input[type="text"],
 select,
 textarea {
   width: 80%;
@@ -479,8 +568,7 @@ textarea {
   box-sizing: border-box;
   resize: vertical;
 }
-
-input[type='password'] {
+input[type="password"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -489,7 +577,7 @@ input[type='password'] {
   resize: vertical;
 }
 
-input[type='email'] {
+input[type="email"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -498,7 +586,7 @@ input[type='email'] {
   resize: vertical;
 }
 
-input[type='number'] {
+input[type="number"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -507,7 +595,7 @@ input[type='number'] {
   font-size: 1rem;
   resize: vertical;
 }
-input[type='file'] {
+input[type="file"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -515,6 +603,9 @@ input[type='file'] {
   box-sizing: border-box;
   font-size: 1rem;
   resize: vertical;
+  color: #2b2a28;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.85rem;
 }
 
 label {
@@ -523,7 +614,7 @@ label {
   float: right;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   background-color: #4caf50;
   color: white;
   padding: 12px 20px;
@@ -552,7 +643,7 @@ input[type='submit'] {
 }
 
 .row:after {
-  content: '';
+  content: "";
   display: table;
   clear: both;
 }
@@ -560,7 +651,7 @@ input[type='submit'] {
 @media screen and (max-width: 600px) {
   .col-25,
   .col-75,
-  input[type='submit'] {
+  input[type="submit"] {
     width: 100%;
     margin-top: 0;
   }
@@ -796,10 +887,24 @@ form {
 
 .charityCardWrapper {
   display: grid;
+  gap: 2rem;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
   margin: 1rem 0;
+}
+
+.showMoreText {
+  margin: -2.5rem 0 2.5rem 0;
+}
+.carousel-wrapper {
+  margin-top: -2rem;
+}
+.carousel-img {
+  height: 300px;
+  width: 300px;
+  border-radius: 6px;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 600px) {
@@ -809,7 +914,24 @@ form {
     justify-content: center;
     align-items: center;
   }
+  .charityCardWrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
+  .showMoreText {
+    margin: 0rem 0 2.5rem 0;
+  }
+
+  .carousel-img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .about-btn {
+    margin-top: 1.3rem;
+    padding: 0;
+  }
   .sign-up-age-verify-container {
     justify-content: flex-start;
   }
@@ -837,12 +959,22 @@ form {
 }
 
 .charityDisplay-btn {
-  justify-self: end;
-  display: inline-block;
+  justify-self: start;
+  align-self: center;
+  margin-top: -2rem;
   background-color: #ccd5ae;
-  margin: 1em 25rem 2rem 1rem;
   border-radius: 12px;
   padding: 0.8rem;
+  border: none;
+}
+
+.charityDisplay-btn:hover {
+  color: #fff;
+  background-color: #d4a373;
+}
+
+.charityDisplay-btn:focus {
+  outline: none;
 }
 
 .dashboard-bar {
@@ -854,9 +986,16 @@ form {
 }
 
 .charity-image {
-  margin-left: 25rem;
-  max-width: 200px;
-  max-height: 200px;
+  justify-self: end;
+  max-width: 150px;
+  max-height: 150px;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .charity-image {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .item-list-wrapper {
@@ -936,6 +1075,9 @@ form {
   .dashboard-header {
     margin-bottom: 1.5rem;
   }
+  .purchase-info-header {
+    margin: -2rem 0 1rem 1.2rem;
+  }
 }
 
 .dashboard-msg {
@@ -966,17 +1108,12 @@ form {
   margin: 2rem 0 1rem 0;
 }
 
-.first-and-fifth {
+.background-colour-carousel-odd {
   border-radius: 12px;
   background-color: #ccd5ae;
 }
 
-.second-and-sixth {
-  border-radius: 12px;
-  background-color: rgb(250, 237, 205);
-}
-
-.third-and-seventh {
+.background-colour-carousel-even {
   border-radius: 12px;
   background-color: #d4a373;
 }
