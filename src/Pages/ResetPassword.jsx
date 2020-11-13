@@ -25,10 +25,7 @@ export default function ResetPassword() {
 
   return (
     <div>
-      {error && <p>{error}</p>}
       <h1 className="signup-login-header">Reset Password</h1>
-      {message && <p>{message}</p>}
-
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-25">
@@ -42,6 +39,8 @@ export default function ResetPassword() {
           Submit
         </button>
       </form>
+      {message && <p className="further-instructions">{message}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }

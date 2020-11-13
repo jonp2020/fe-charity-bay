@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { Link, navigate } from "@reach/router";
-import axios from "axios";
+import React, { useRef, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { Link, navigate } from '@reach/router';
+import axios from 'axios';
 export default function SignUp() {
   const { signup } = useAuth();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const usernameRef = useRef();
@@ -20,15 +20,15 @@ export default function SignUp() {
     e.preventDefault();
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
     if (passwordRef.current.value !== passwordConfRef.current.value) {
-      return setError("Passwords do not match");
+      return setError('Passwords do not match');
     }
     if (!passwordRegex.test(passwordRef.current.value)) {
       return setError(
-        "Password must be at least 8 characters and contain at least one; lowercase letter, uppercase letter, number and special character"
+        'Password must be at least 8 characters and contain at least one; lowercase letter, uppercase letter, number and special character'
       );
     }
     if (!checkboxRef.current.checked) {
-      return setError("You must be at least 18 years old to create an account");
+      return setError('You must be at least 18 years old to create an account');
     }
     if (!termsRef.current.checked) {
       return setError(
@@ -36,17 +36,17 @@ export default function SignUp() {
       );
     }
     try {
-      setError("");
+      setError('');
       setLoading(true);
-    
+
       const {
         data: { user },
       } = await axios.get(
         `https://charity-bay-be.herokuapp.com/api/users/${usernameRef.current.value}`
       );
-      if (user.username) throw new Error("Username already exists");
+      if (user.username) throw new Error('Username already exists');
       await signup(emailRef.current.value, passwordRef.current.value);
-      await axios.post("https://charity-bay-be.herokuapp.com/api/users", {
+      await axios.post('https://charity-bay-be.herokuapp.com/api/users', {
         username: usernameRef.current.value,
         email: emailRef.current.value,
         first_name: firstNameRef.current.value,
@@ -54,28 +54,27 @@ export default function SignUp() {
         location: locationRef.current.value,
       });
       handleMail();
-      navigate("/dashboard");
+      navigate('/dashboard');
     } catch (err) {
       if (err.response) {
         const error = err.response.data.msg;
         setError(error);
       } else {
-        const error = err.message || "Failed to create an account";
+        const error = err.message || 'Failed to create an account';
         setError(error);
       }
     }
-     setLoading(false);
+    setLoading(false);
   }
 
-function handleMail () {
-      const dataToSubmit = {
+  function handleMail() {
+    const dataToSubmit = {
       email: emailRef.current.value,
       name: firstNameRef.current.value,
-      type: "Welcome"
-    }
-       axios.post('https://charity-bay-be.herokuapp.com/api/mail', dataToSubmit)
-}
-
+      type: 'Welcome',
+    };
+    axios.post('https://charity-bay-be.herokuapp.com/api/mail', dataToSubmit);
+  }
 
   return (
     <>
@@ -157,7 +156,6 @@ function handleMail () {
             <input id="location" type="text" ref={locationRef} required></input>
           </div>
         </div>
-        {/* <div className="sign-up-verfiy-checkbox-container"> */}
         <div className="sign-up-age-verify-container">
           <div className="sign-up-age-verify">
             <label htmlFor="age-verification">
@@ -165,23 +163,17 @@ function handleMail () {
             </label>
             <input type="checkbox" ref={checkboxRef}></input>
           </div>
-          {/* <div className="sign-up-age-checkbox">
-            
-          </div> */}
         </div>
         <div className="sign-up-verify-role-container">
           <div className="sign-up-role-verify">
             <label htmlFor="age-verification">
-              I confirm that I have read the{" "}
+              I confirm that I have read the{' '}
               <Link to="/about">'How It Works'</Link> section on the About page
               and understand my role as a user on CharityBay:
             </label>
             <input type="checkbox" ref={termsRef}></input>
           </div>
-          {/* <div className="sign-up-role-checkbox">
-          </div> */}
         </div>
-        {/* </div> */}
         <button className="sign-up-login-btn" disabled={loading} type="submit">
           Submit
         </button>
