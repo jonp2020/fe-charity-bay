@@ -115,12 +115,11 @@ export default function Dashboard() {
   return (
     <div>
       <div className="dashboard-bar">
-      <h1  className="dashboard-head">
-        Dashboard</h1>
-        </div>
-      <div className="dashboard-btn-container">
+        <h1 className="dashboard-head">Dashboard</h1>
+      </div>
+      <div className="navigationButtons">
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
             setList("reserved");
           }}
@@ -128,7 +127,7 @@ export default function Dashboard() {
           Reserved
         </button>
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
             setList("purchased");
           }}
@@ -136,7 +135,7 @@ export default function Dashboard() {
           Purchased
         </button>
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
             setList("available");
           }}
@@ -144,7 +143,7 @@ export default function Dashboard() {
           For Sale
         </button>
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
             setList("sold");
           }}
@@ -186,7 +185,6 @@ export default function Dashboard() {
             </ul>
           ) : (
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
       ) : list === "purchased" ? (
@@ -199,9 +197,7 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
       ) : list === "available" ? (
@@ -227,9 +223,7 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
       ) : list === "sold" ? (
@@ -242,9 +236,7 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
       ) : null}
@@ -260,4 +252,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
