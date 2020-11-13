@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
 .App {
@@ -13,7 +13,7 @@
 }
 
 .lobster-font {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-style: italic;
 }
 .header {
@@ -25,7 +25,7 @@
 }
 
 .header h1 {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
 }
 .user-bar {
   display: flex;
@@ -111,7 +111,7 @@
   flex-direction: column;
 }
 .individualItem-container {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .individualItem-card {
@@ -168,7 +168,7 @@
   background-color: #d4a373;
 }
 .project-title-footer {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-style: italic;
   text-decoration: none;
   color: #ffffff;
@@ -280,9 +280,6 @@
   border-radius: 12px;
   padding: 0.5rem;
   border: none;
-  transition: all 0.3s ease 0s;
-  font-weight: bold;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   align-self: center;
 }
@@ -290,9 +287,12 @@
 .itemsListPrice button:hover {
   color: #ffffff;
   background-color: #d4a373;
-  box-shadow: 0px 15px 20px rgba(204, 213, 174, 0.4);
   color: #fff;
   transform: translateY(-3px);
+}
+
+.itemsListPrice button:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 600px) {
@@ -345,6 +345,10 @@
 .navigationButtons button:hover {
   background-color: #d4a373;
   color: #fff;
+}
+
+.navigationButtons button:focus {
+  outline: none;
 }
 
 .sort-data-items-wrapper {
@@ -441,7 +445,7 @@ footer {
 }
 
 /*post-page*/
-input[type='text'],
+input[type="text"],
 select,
 textarea {
   width: 80%;
@@ -451,7 +455,7 @@ textarea {
   box-sizing: border-box;
   resize: vertical;
 }
-input[type='password'] {
+input[type="password"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -460,7 +464,7 @@ input[type='password'] {
   resize: vertical;
 }
 
-input[type='email'] {
+input[type="email"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -469,7 +473,7 @@ input[type='email'] {
   resize: vertical;
 }
 
-input[type='number'] {
+input[type="number"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -478,7 +482,7 @@ input[type='number'] {
   font-size: 1rem;
   resize: vertical;
 }
-input[type='file'] {
+input[type="file"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -506,7 +510,7 @@ label {
   float: right;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   background-color: #4caf50;
   color: white;
   padding: 12px 20px;
@@ -531,14 +535,14 @@ input[type='submit'] {
   margin-top: 6px;
 }
 .row:after {
-  content: '';
+  content: "";
   display: table;
   clear: both;
 }
 @media screen and (max-width: 600px) {
   .col-25,
   .col-75,
-  input[type='submit'] {
+  input[type="submit"] {
     width: 100%;
     margin-top: 0;
   }
@@ -770,10 +774,24 @@ form {
 
 .charityCardWrapper {
   display: grid;
+  gap: 2rem;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
   margin: 1rem 0;
+}
+
+.showMoreText {
+  margin: -2.5rem 0 2.5rem 0;
+}
+.carousel-wrapper {
+  margin-top: -2rem;
+}
+.carousel-img {
+  height: 300px;
+  width: 300px;
+  border-radius: 6px;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 600px) {
@@ -783,7 +801,24 @@ form {
     justify-content: center;
     align-items: center;
   }
+  .charityCardWrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
+  .showMoreText {
+    margin: 0rem 0 2.5rem 0;
+  }
+
+  .carousel-img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .about-btn {
+    margin-top: 1.3rem;
+    padding: 0;
+  }
   .sign-up-age-verify-container {
     justify-content: flex-start;
   }
@@ -808,12 +843,22 @@ form {
 }
 
 .charityDisplay-btn {
-  justify-self: end;
-  display: inline-block;
+  justify-self: start;
+  align-self: center;
+  margin-top: -2rem;
   background-color: #ccd5ae;
-  margin: 1em 25rem 2rem 1rem;
   border-radius: 12px;
   padding: 0.8rem;
+  border: none;
+}
+
+.charityDisplay-btn:hover {
+  color: #fff;
+  background-color: #d4a373;
+}
+
+.charityDisplay-btn:focus {
+  outline: none;
 }
 
 .dashboard-bar {
@@ -825,10 +870,16 @@ form {
 }
 
 .charity-image {
-  margin-left: 25rem;
-  max-width: 200px;
-  max-height: 200px;
+  justify-self: end;
+  max-width: 150px;
+  max-height: 150px;
+  margin-bottom: 2rem;
+}
 
+@media screen and (max-width: 600px) {
+  .charity-image {
+    margin-bottom: 0.5rem;
+  }
 }
 
 /************************** dashboard big screen***********************/
@@ -916,7 +967,6 @@ form {
   color: #d4a373;
   margin: 1.5rem;
   text-align: center;
-
 }
 
 @media screen and (max-width: 600px) {
@@ -952,24 +1002,12 @@ form {
   margin: 2rem 0 1rem 0;
 }
 
-
-.first-and-fifth {
-  border-radius: 12px;
-  background-color: #ccd5ae;
-}
-
-.second-and-sixth {
+.background-colour-carousel-odd {
   border-radius: 12px;
   background-color: rgb(250, 237, 205);
 }
 
-.third-and-seventh {
+.background-colour-carousel-even {
   border-radius: 12px;
   background-color: #d4a373;
 }
-
-.fourth-and-eighth {
-  border-radius: 12px;
-  background-color: #e9edc9;
-}
-
