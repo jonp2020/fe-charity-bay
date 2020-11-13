@@ -407,7 +407,9 @@
 @media screen and (max-width: 600px) {
   .navigationButtons {
     display: grid;
+    grid-template-columns: 1fr 1fr ;
     grid-template-rows: 1fr 1fr;
+    gap: 1rem;
   }
 
   .sort-data-items-wrapper {
@@ -988,6 +990,10 @@ form {
   .dashboard-header {
     margin-bottom: 1.5rem;
   }
+  .purchase-info-header {
+    margin: -2rem 0 1rem 1.2rem;
+  }
+  
 }
 
 .dashboard-msg {
