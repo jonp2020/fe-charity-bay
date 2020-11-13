@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
-import ItemsListCard from '../components/ItemsListCard';
-import Pagination from '../components/Pagination';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
+import ItemsListCard from "../components/ItemsListCard";
+import Pagination from "../components/Pagination";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
+}));
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [itemCount, setItemCount] = useState(0);
-  const [list, setList] = useState('reserved');
+  const [list, setList] = useState("reserved");
   const [page, setPage] = useState(1);
-  const [change, setChange] = useState('');
+  const [change, setChange] = useState("");
+  const classes = useStyles();
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -20,17 +31,17 @@ export default function Dashboard() {
         `https://charity-bay-be.herokuapp.com/api/users/user/${currentUser.email}`
       )
       .then(({ data: { user } }) => {
-        if (list === 'reserved' || list === 'purchased') {
+        if (list === "reserved" || list === "purchased") {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=${list}&buyer=${user.username}&p=${page}`
           );
         }
-        if (list === 'available') {
+        if (list === "available") {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=${list}&seller_username=${user.username}&p=${page}`
           );
         }
-        if (list === 'sold') {
+        if (list === "sold") {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=purchased&seller_username=${user.username}&p=${page}`
           );
@@ -46,7 +57,7 @@ export default function Dashboard() {
   async function handlePurchase(item_id) {
     await axios.patch(
       `https://charity-bay-be.herokuapp.com/api/items/${item_id}`,
-      { status: 'purchased' }
+      { status: "purchased" }
     );
   }
 
@@ -75,22 +86,22 @@ export default function Dashboard() {
         const sellerDataToSubmit = {
           email: sellerEmail,
           name: item.seller_username,
-          type: 'Sold',
+          type: "Sold",
           clientEmail: currentUser.email,
         };
         axios.post(
-          'https://charity-bay-be.herokuapp.com/api/mail',
+          "https://charity-bay-be.herokuapp.com/api/mail",
           sellerDataToSubmit
         );
 
         const buyerDataToSubmit = {
           email: currentUser.email,
           name: item.buyer,
-          type: 'Bought',
+          type: "Bought",
           clientEmail: sellerEmail,
         };
         axios.post(
-          'https://charity-bay-be.herokuapp.com/api/mail',
+          "https://charity-bay-be.herokuapp.com/api/mail",
           buyerDataToSubmit
         );
       });
@@ -103,43 +114,49 @@ export default function Dashboard() {
   const pages = Array.from({ length: pageCount }).map((item, i) => i + 1);
   return (
     <div>
-      <h1 className="dashboard-head">Dashboard</h1>
-      <div className="btn-container">
+      <div className="dashboard-bar">
+        <h1 className="dashboard-head">Dashboard</h1>
+      </div>
+      <div className="dash-navigationButtons">
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
-            setList('reserved');
+            setList("reserved");
           }}
         >
           Reserved
         </button>
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
-            setList('purchased');
+            setList("purchased");
           }}
         >
           Purchased
         </button>
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
-            setList('available');
+            setList("available");
           }}
         >
           For Sale
         </button>
         <button
-          className="dashboard-btns"
+          // className="dashboard-btns"
           onClick={() => {
-            setList('sold');
+            setList("sold");
           }}
         >
           Sold
         </button>
       </div>
 
-      {list === 'reserved' && !loading ? (
+      {loading ? (
+        <Backdrop className={classes.backdrop} open={true}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      ) : list === "reserved" ? (
         <>
           <h2 className="dashboard-header">Your Reserved Items</h2>
           <p className="reserve-paragraph">
@@ -150,27 +167,27 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <>
-                    <ItemsListCard key={item.item_id} item={item} />
+                  <div key={item.item_id}>
+                    <ItemsListCard item={item} />
                     <button
                       className="action-button"
                       onClick={() => {
                         handlePurchase(item.item_id);
-                        setChange('purchased');
+                        setChange("purchased");
                         handleMail(item);
                       }}
                     >
-                      Purchase
+                      Confirm Purchase
                     </button>
-                  </>
+                  </div>
                 );
               })}
             </ul>
           ) : (
-            <p>There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
-      ) : list === 'purchased' && !loading ? (
+      ) : list === "purchased" ? (
         <>
           <h2 className="dashboard-header">Your Purchased Items</h2>
           {items.length ? (
@@ -180,36 +197,36 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-            <p>There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
-      ) : list === 'available' && !loading ? (
+      ) : list === "available" ? (
         <>
           <h2 className="dashboard-header">Your Items For Sale</h2>
           {items.length ? (
             <ul>
               {items.map((item) => {
                 return (
-                  <>
-                    <ItemsListCard key={item.item_id} item={item} />
+                  <div key={item.item_id}>
+                    <ItemsListCard item={item} />
                     <button
                       className="action-button"
                       onClick={() => {
                         handleDelete(item);
-                        setChange('deleted');
+                        setChange("deleted");
                       }}
                     >
-                      Delete
+                      Remove this item from the sales list
                     </button>
-                  </>
+                  </div>
                 );
               })}
             </ul>
           ) : (
-            <p>There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
-      ) : list === 'sold' && !loading ? (
+      ) : list === "sold" ? (
         <>
           <h2 className="dashboard-header">Your Sold Items</h2>
           {items.length ? (
@@ -219,7 +236,7 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-            <p>There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
       ) : null}
@@ -232,76 +249,6 @@ export default function Dashboard() {
           changePage={changePage}
         />
       ) : null}
-      {/* {!items.length && !loading ? (
-        <p>There are no items to display</p>
-      ) : (
-        <>
-          {list === 'reserved' && !loading ? (
-            <>
-              <h2 className="dashboard-header">Your Reserved Items</h2>
-              <p className="reserve-paragraph">
-                Once you have donated the money for your reserved item, click
-                the 'Confirm Purchase' button to notify the seller.
-              </p>
-            </>
-          ) : list === 'purchased' && !loading ? (
-            <h2 className="dashboard-header">Your Purchased Items</h2>
-          ) : list === 'available' && !loading ? (
-            <h2 className="dashboard-header">Your Items For Sale</h2>
-          ) : list === 'sold' && !loading ? (
-            <h2 className="dashboard-header">Your Sold Items</h2>
-          ) : null}
-          {!loading && (
-            <>
-              <ul>
-                {items.map((item) => {
-                  if (list === 'reserved') {
-                    return (
-                      <>
-                        <ItemsListCard key={item.item_id} item={item} />
-                        <button
-                          onClick={() => {
-                            handlePurchase(item.item_id);
-                            setChange('purchased');
-                            handleMail(item);
-                          }}
-                        >
-                          Purchase
-                        </button>
-                      </>
-                    );
-                  }
-                  if (list === 'available') {
-                    return (
-                      <>
-                        <ItemsListCard key={item.item_id} item={item} />
-                        <button
-                          onClick={() => {
-                            handleDelete(item);
-                            setChange('deleted');
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </>
-                    );
-                  }
-
-                  return <ItemsListCard key={item.item_id} item={item} />;
-                })}
-              </ul>
-
-              <Pagination
-                page={page}
-                atStart={atStart}
-                atEnd={atEnd}
-                pages={pages}
-                changePage={changePage}
-              />
-            </>
-          )}
-        </>
-      )} */}
     </div>
   );
 }

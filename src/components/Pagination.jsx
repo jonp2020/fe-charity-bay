@@ -8,8 +8,9 @@ export default function Pagination({
   changePage,
 }) {
   return (
-    <div>
+    <div className="pagination">
       <button
+        className="p-button"
         disabled={atStart}
         onClick={() => {
           changePage(page - 1);
@@ -20,15 +21,17 @@ export default function Pagination({
       {pages.map((singlePage) => (
         <button
           key={singlePage}
+          className="p-button"
           onClick={() => {
             changePage(singlePage);
           }}
-          className={page === singlePage ? 'button-background' : null}
+          id={page === singlePage ? 'button-background' : 'p-Button-background'}
         >
           {singlePage}
         </button>
       ))}
       <button
+        className="p-button"
         disabled={atEnd}
         onClick={() => {
           changePage(page + 1);
