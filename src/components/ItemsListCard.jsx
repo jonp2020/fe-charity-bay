@@ -5,7 +5,7 @@ require("dotenv").config();
 const ItemsListCard = (props) => {
   return (
     <section className="itemsList">
-      <div>
+      <div className="itemsListPicture">
         <picture>
           <Link to={`/item/${props.item.item_id}`} item={props.item}>
             <img
@@ -16,33 +16,38 @@ const ItemsListCard = (props) => {
           </Link>
         </picture>
       </div>
-      <div>
-        <div className="itemsListTitle">
-          <p>{props.item.category}</p>
-          <Link
-            className="itemsListTitle"
-            to={`/item/${props.item.item_id}`}
-            item={props.item}
-          >
-            <p className="itemsListTitle">{props.item.title}</p>
-          </Link>
-          <p>
-            Seller: <em>{props.item.seller_username}</em>
-          </p>
-        </div>
-        <div className="itemsListPrice">
-          <Link
-            className="itemsListPrice"
-            to={`/item/${props.item.item_id}`}
-            item={props.item}
-          >
-            <p> £{props.item.price}.00</p>
-          </Link>
-        </div>
+      <div className="itemsListTitle">
+        <p>{props.item.category}</p>
+        <Link
+          className="itemsListTitle"
+          to={`/item/${props.item.item_id}`}
+          item={props.item}
+        >
+          <p className="itemsListTitle">{props.item.title}</p>
+        </Link>
+        <p>
+          Seller: <em>{props.item.seller_username}</em>
+        </p>
+      </div>
+
+      <div className="itemsListPrice">
+        <Link
+          className="itemsListPrice"
+          to={`/item/${props.item.item_id}`}
+          item={props.item}
+        >
+          <p> £{props.item.price}.00</p>
+        </Link>
+        <Link
+          className="itemsListPrice"
+          to={`/item/${props.item.item_id}`}
+          item={props.item}
+        >
+          <button>More info</button>
+        </Link>
       </div>
     </section>
   );
 };
 
 export default ItemsListCard;
-

@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { Link } from '@reach/router';
-import axios from 'axios';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from "react";
+import { Link } from "@reach/router";
+import axios from "axios";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { withStyles } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
+    color: "#fff",
   },
 });
 class IndividualItem extends Component {
   state = {
     item: {},
     isLoading: true,
-    charity: '',
+    charity: "",
   };
 
   componentDidMount() {
@@ -23,7 +23,7 @@ class IndividualItem extends Component {
       axios.get(
         `https://charity-bay-be.herokuapp.com/api/items/${this.props.item_id}`
       ),
-      axios.get('https://charity-bay-be.herokuapp.com/api/charities'),
+      axios.get("https://charity-bay-be.herokuapp.com/api/charities"),
     ]).then(
       ([
         {
@@ -79,8 +79,8 @@ class IndividualItem extends Component {
             <p className="individualItem-desktop-info">
               Money for this item will be donated to <strong>{charity}</strong>
             </p>
-            {item.status === 'available' ? (
-              <Link className="donate-btn" to={`/purchase/${item.item_id}`}>
+            {item.status === "available" ? (
+              <Link to={`/purchase/${item.item_id}`}>
                 <button className="donate-btn">Click to buy and donate</button>
               </Link>
             ) : null}

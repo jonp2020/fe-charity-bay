@@ -1,4 +1,4 @@
-import { red } from "@material-ui/core/colors";
+// import { red } from "@material-ui/core/colors";
 import React from "react";
 
 export default function Pagination({
@@ -9,7 +9,7 @@ export default function Pagination({
   changePage,
 }) {
   return (
-    <div className="paggination">
+    <div className="pagination">
       <button
         className="p-button"
         disabled={atStart}
