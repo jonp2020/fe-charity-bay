@@ -240,7 +240,7 @@
 .itemsList {
   display: grid;
   grid-template-columns: 300px 300px 300px;
-  margin: 2rem 5rem;
+  margin: 2rem 5rem 1rem 5rem;
   justify-content: center;
   align-items: center;
 }
@@ -820,15 +820,14 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #d4a373;
-  color: white;
+  /* background-color: #d4a373;
+  color: white; */
 }
 
 .charity-image {
   margin-left: 25rem;
   max-width: 200px;
   max-height: 200px;
-
 }
 
 /************************** dashboard big screen***********************/
@@ -839,23 +838,11 @@ form {
 .item-descp-wraper {
   text-align: justify;
 }
-.dashboard-wrapper {
-  display: flex;
-  justify-content: space-around;
-}
-.dashboard-wrapper .action-button {
-  background-color: #ee7d59;
-  margin-top: 0.7rem;
-  border-radius: 12px;
-  height: 50px;
-  width: 70px;
-  font-size: 1rem;
-}
 
 .action-button {
   background-color: #ee7d59;
   margin-top: 0.7rem;
-  margin: 1em 0 2rem 0;
+  margin: 0 0 2rem 0;
   border-radius: 12px;
   padding: 0.8rem;
   font-size: 1rem;
@@ -866,7 +853,7 @@ form {
 .dashboard-btns {
   background-color: #faedcd;
   font-size: 0.8rem;
-  margin: 1rem 0 1rem 0;
+  margin: 0 0.6rem 1rem 0.6rem;
   border-radius: 12px;
   padding: 0.6rem 0.8rem;
 
@@ -907,8 +894,8 @@ form {
 }
 
 .dashboard-head {
-  font-family: "Lobster Two", cursive;
-  margin-top: 2rem;
+  /* font-family: 'Lobster Two', cursive; */
+  margin: 1rem 0;
 }
 
 .dashboard-header {
@@ -916,7 +903,6 @@ form {
   color: #d4a373;
   margin: 1.5rem;
   text-align: center;
-
 }
 
 @media screen and (max-width: 600px) {
@@ -952,7 +938,6 @@ form {
   margin: 2rem 0 1rem 0;
 }
 
-
 .first-and-fifth {
   border-radius: 12px;
   background-color: #ccd5ae;
@@ -972,4 +957,3 @@ form {
   border-radius: 12px;
   background-color: #e9edc9;
 }
-
