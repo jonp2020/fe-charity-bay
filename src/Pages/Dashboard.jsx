@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useAuth } from "../contexts/AuthContext";
-import ItemsListCard from "../components/ItemsListCard";
-import Pagination from "../components/Pagination";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useAuth } from '../contexts/AuthContext';
+import ItemsListCard from '../components/ItemsListCard';
+import Pagination from '../components/Pagination';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
+    color: '#fff',
   },
 }));
 
@@ -18,9 +18,9 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [itemCount, setItemCount] = useState(0);
-  const [list, setList] = useState("reserved");
+  const [list, setList] = useState('reserved');
   const [page, setPage] = useState(1);
-  const [change, setChange] = useState("");
+  const [change, setChange] = useState('');
   const classes = useStyles();
   const { currentUser } = useAuth();
 
@@ -31,17 +31,17 @@ export default function Dashboard() {
         `https://charity-bay-be.herokuapp.com/api/users/user/${currentUser.email}`
       )
       .then(({ data: { user } }) => {
-        if (list === "reserved" || list === "purchased") {
+        if (list === 'reserved' || list === 'purchased') {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=${list}&buyer=${user.username}&p=${page}`
           );
         }
-        if (list === "available") {
+        if (list === 'available') {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=${list}&seller_username=${user.username}&p=${page}`
           );
         }
-        if (list === "sold") {
+        if (list === 'sold') {
           return axios.get(
             `https://charity-bay-be.herokuapp.com/api/items?status=purchased&seller_username=${user.username}&p=${page}`
           );
@@ -57,7 +57,7 @@ export default function Dashboard() {
   async function handlePurchase(item_id) {
     await axios.patch(
       `https://charity-bay-be.herokuapp.com/api/items/${item_id}`,
-      { status: "purchased" }
+      { status: 'purchased' }
     );
   }
 
@@ -86,22 +86,22 @@ export default function Dashboard() {
         const sellerDataToSubmit = {
           email: sellerEmail,
           name: item.seller_username,
-          type: "Sold",
+          type: 'Sold',
           clientEmail: currentUser.email,
         };
         axios.post(
-          "https://charity-bay-be.herokuapp.com/api/mail",
+          'https://charity-bay-be.herokuapp.com/api/mail',
           sellerDataToSubmit
         );
 
         const buyerDataToSubmit = {
           email: currentUser.email,
           name: item.buyer,
-          type: "Bought",
+          type: 'Bought',
           clientEmail: sellerEmail,
         };
         axios.post(
-          "https://charity-bay-be.herokuapp.com/api/mail",
+          'https://charity-bay-be.herokuapp.com/api/mail',
           buyerDataToSubmit
         );
       });
@@ -115,14 +115,13 @@ export default function Dashboard() {
   return (
     <div>
       <div className="dashboard-bar">
-      <h1  className="dashboard-head">
-        Dashboard</h1>
-        </div>
+        <h1 className="dashboard-head">Dashboard</h1>
+      </div>
       <div className="dashboard-btn-container">
         <button
           className="dashboard-btns"
           onClick={() => {
-            setList("reserved");
+            setList('reserved');
           }}
         >
           Reserved
@@ -130,7 +129,7 @@ export default function Dashboard() {
         <button
           className="dashboard-btns"
           onClick={() => {
-            setList("purchased");
+            setList('purchased');
           }}
         >
           Purchased
@@ -138,7 +137,7 @@ export default function Dashboard() {
         <button
           className="dashboard-btns"
           onClick={() => {
-            setList("available");
+            setList('available');
           }}
         >
           For Sale
@@ -146,7 +145,7 @@ export default function Dashboard() {
         <button
           className="dashboard-btns"
           onClick={() => {
-            setList("sold");
+            setList('sold');
           }}
         >
           Sold
@@ -157,7 +156,7 @@ export default function Dashboard() {
         <Backdrop className={classes.backdrop} open={true}>
           <CircularProgress color="inherit" />
         </Backdrop>
-      ) : list === "reserved" ? (
+      ) : list === 'reserved' ? (
         <>
           <h2 className="dashboard-header">Your Reserved Items</h2>
           <p className="reserve-paragraph">
@@ -168,13 +167,13 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <div key={item.item_id} className="dashboard-wrapper">
+                  <div key={item.item_id}>
                     <ItemsListCard item={item} />
                     <button
                       className="action-button"
                       onClick={() => {
                         handlePurchase(item.item_id);
-                        setChange("purchased");
+                        setChange('purchased');
                         handleMail(item);
                       }}
                     >
@@ -186,10 +185,9 @@ export default function Dashboard() {
             </ul>
           ) : (
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
-      ) : list === "purchased" ? (
+      ) : list === 'purchased' ? (
         <>
           <h2 className="dashboard-header">Your Purchased Items</h2>
           {items.length ? (
@@ -199,12 +197,10 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
-      ) : list === "available" ? (
+      ) : list === 'available' ? (
         <>
           <h2 className="dashboard-header">Your Items For Sale</h2>
           {items.length ? (
@@ -217,7 +213,7 @@ export default function Dashboard() {
                       className="action-button"
                       onClick={() => {
                         handleDelete(item);
-                        setChange("deleted");
+                        setChange('deleted');
                       }}
                     >
                       Remove this item from the sales list
@@ -227,12 +223,10 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
-      ) : list === "sold" ? (
+      ) : list === 'sold' ? (
         <>
           <h2 className="dashboard-header">Your Sold Items</h2>
           {items.length ? (
@@ -242,9 +236,7 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-
             <p className="dashboard-msg">There are no items to display</p>
-
           )}
         </>
       ) : null}
@@ -260,4 +252,3 @@ export default function Dashboard() {
     </div>
   );
 }
-

@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import ItemsListCard from "../components/ItemsListCard";
-import axios from "axios";
-import Pagination from "../components/Pagination";
-import { navigate } from "@reach/router";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react';
+import ItemsListCard from '../components/ItemsListCard';
+import axios from 'axios';
+import Pagination from '../components/Pagination';
+import { navigate } from '@reach/router';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
+    color: '#fff',
   },
 });
 
@@ -19,15 +19,17 @@ class LandingPage extends Component {
     items: [],
     page: 1,
     isLoading: true,
-    order: "desc",
+    order: 'desc',
     category: undefined,
-    sortBy: "thumbnail_img_ref",
+    sortBy: 'thumbnail_img_ref',
   };
 
   componentDidMount() {
     const { page } = this.state;
     return axios
-      .get(`https://charity-bay-be.herokuapp.com/api/items?p=${page}`)
+      .get(
+        `https://charity-bay-be.herokuapp.com/api/items?p=${page}&status=available`
+      )
       .then(({ data: { items, itemCount } }) => {
         this.setState({ items, itemCount, isLoading: false });
       });
@@ -42,8 +44,14 @@ class LandingPage extends Component {
       prevState.sortBy !== sortBy
     ) {
       return axios
-        .get("https://charity-bay-be.herokuapp.com/api/items", {
-          params: { p: page, order: order, category, sortBy },
+        .get('https://charity-bay-be.herokuapp.com/api/items', {
+          params: {
+            p: page,
+            order: order,
+            category,
+            sortBy,
+            status: 'available',
+          },
         })
         .then(({ data: { items, itemCount } }) => {
           this.setState({ items, itemCount, isLoading: false });
@@ -87,14 +95,14 @@ class LandingPage extends Component {
               <button
                 className="howItWorks-btn"
                 onClick={() => {
-                  navigate("/about");
+                  navigate('/about');
                 }}
               >
                 How it works
               </button>
               <button
                 onClick={() => {
-                  navigate("/post_item");
+                  navigate('/post_item');
                 }}
               >
                 Sell an item
@@ -103,7 +111,7 @@ class LandingPage extends Component {
             <div className="sort-data-items-wrapper">
               <select
                 className="sort-data-item sort-data-item-cats"
-                defaultValue={""}
+                defaultValue={''}
                 onChange={this.handleFilter}
               >
                 <option disabled value="">
@@ -119,7 +127,7 @@ class LandingPage extends Component {
               <div className="select-box-gap"></div>
               <select
                 className="sort-data-item sort-data-item-price"
-                defaultValue={""}
+                defaultValue={''}
                 onChange={this.handleSort}
               >
                 <option disabled value="">
@@ -130,10 +138,10 @@ class LandingPage extends Component {
               </select>
               <div className="select-box-gap"></div>
 
-              {sortBy === "thumbnail_img_ref" && (
+              {sortBy === 'thumbnail_img_ref' && (
                 <select
                   className="sort-data-item sort-data-item-age"
-                  defaultValue={""}
+                  defaultValue={''}
                   onChange={this.handleOrder}
                 >
                   <option disabled value="">
@@ -143,10 +151,10 @@ class LandingPage extends Component {
                   <option value="asc">Oldest</option>
                 </select>
               )}
-              {sortBy === "price" && (
+              {sortBy === 'price' && (
                 <select
                   className="sort-data-item sort-data-item-price"
-                  defaultValue={""}
+                  defaultValue={''}
                   onChange={this.handleOrder}
                 >
                   <option disabled value="">
