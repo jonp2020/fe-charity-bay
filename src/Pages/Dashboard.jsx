@@ -114,8 +114,11 @@ export default function Dashboard() {
   const pages = Array.from({ length: pageCount }).map((item, i) => i + 1);
   return (
     <div>
-      <h1 className="dashboard-head">Dashboard</h1>
-      <div className="btn-container">
+      <div className="dashboard-bar">
+      <h1  className="dashboard-head">
+        Dashboard</h1>
+        </div>
+      <div className="dashboard-btn-container">
         <button
           className="dashboard-btns"
           onClick={() => {
@@ -183,6 +186,7 @@ export default function Dashboard() {
             </ul>
           ) : (
             <p className="dashboard-msg">There are no items to display</p>
+
           )}
         </>
       ) : list === "purchased" ? (
@@ -195,7 +199,9 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
+
             <p className="dashboard-msg">There are no items to display</p>
+
           )}
         </>
       ) : list === "available" ? (
@@ -221,7 +227,9 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
+
             <p className="dashboard-msg">There are no items to display</p>
+
           )}
         </>
       ) : list === "sold" ? (
@@ -234,7 +242,9 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
+
             <p className="dashboard-msg">There are no items to display</p>
+
           )}
         </>
       ) : null}
@@ -250,3 +260,4 @@ export default function Dashboard() {
     </div>
   );
 }
+
