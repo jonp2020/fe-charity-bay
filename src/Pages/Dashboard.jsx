@@ -167,7 +167,7 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <div key={item.item_id} className="dashboard-wrapper">
+                  <div key={item.item_id}>
                     <ItemsListCard item={item} />
                     <button
                       className="action-button"

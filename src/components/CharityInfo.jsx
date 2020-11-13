@@ -12,8 +12,7 @@ class CharityInfo extends Component {
     buttonText: "More info",
   };
 
-  handleDescription = (event) => {
-    console.log(event.target.value);
+  handleDescription = () => {
     this.setState((currentState) => {
       return {
         charityShowMore:
@@ -58,28 +57,4 @@ class CharityInfo extends Component {
   }
 }
 
-//{require(`../images/${this.props.charity.charity_id}.png`)}
-
 export default CharityInfo;
-
-// imageToShow = () =>  {
-//   if(this.props.charity.charity_id === 1){
-//                return <img src={Image1} alt={this.props.charity.name}></img>
-// }
-//   if(this.props.charity.charity_id === 2){
-//                return <img src={Image2} alt={this.props.charity.name}></img>
-// }
-//   if(this.props.charity.charity_id === 3){
-//                return <img src={Image3} alt={this.props.charity.name}></img>
-// }
-//   if(this.props.charity.charity_id === 4){
-//                return <img src={Image4} alt={this.props.charity.name}></img>
-// }
-//   if(this.props.charity.charity_id === 5){
-//                return <img src={Image5} alt={this.props.charity.name}></img>
-// }
-//   if(this.props.charity.charity_id === 6){
-//                return <img src={Image6} alt={this.props.charity.name}></img>
-// }
-
-// }
