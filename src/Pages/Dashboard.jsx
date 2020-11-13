@@ -117,7 +117,7 @@ export default function Dashboard() {
       <div className="dashboard-bar">
         <h1 className="dashboard-head">Dashboard</h1>
       </div>
-      <div className="navigationButtons">
+      <div className="dash-navigationButtons">
         <button
           // className="dashboard-btns"
           onClick={() => {
