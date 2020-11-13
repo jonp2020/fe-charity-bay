@@ -117,7 +117,11 @@ export default function Dashboard() {
       <div className="dashboard-bar">
         <h1 className="dashboard-head">Dashboard</h1>
       </div>
+<<<<<<< HEAD
       <div className="navigationButtons">
+=======
+      <div className="dash-navigationButtons">
+>>>>>>> a0a212baef305f97c220c1a286307bab13309103
         <button
           // className="dashboard-btns"
           onClick={() => {
@@ -167,7 +171,7 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <div key={item.item_id} className="dashboard-wrapper">
+                  <div key={item.item_id}>
                     <ItemsListCard item={item} />
                     <button
                       className="action-button"

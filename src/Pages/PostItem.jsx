@@ -22,7 +22,7 @@ export default function PostItem() {
         file,
         120,
         120,
-        'JPEG',
+        "JPEG",
         100,
         0,
         (uri) => {
@@ -38,7 +38,7 @@ export default function PostItem() {
         file,
         500,
         300,
-        'JPEG',
+        "JPEG",
         100,
         0,
         (uri) => {
@@ -72,7 +72,6 @@ export default function PostItem() {
     if (!file) {
       throw new Error("Select a file first!");
     }
-    //refactor using async/await
 
     return Promise.all([
       resizeThumbnailFile(file[0]),
@@ -138,6 +137,10 @@ export default function PostItem() {
 
   return (
     <section>
+      <h1 className="post-item-header">
+        Complete the form to add your item to{" "}
+        <span className="lobster-font">CharityBay</span>
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-25">
@@ -148,9 +151,10 @@ export default function PostItem() {
               type="text"
               id="title"
               name="title"
-              placeholder="Item Name"
+              placeholder="Item name"
               required
               ref={titleRef}
+              className="post-item-select-menu"
             ></input>
           </div>
         </div>
@@ -162,9 +166,10 @@ export default function PostItem() {
             <textarea
               id="descp"
               name="descp"
-              placeholder="Write about your item.."
+              placeholder="Write a short description of your item..."
               required
               ref={descriptionRef}
+              className="post-item-select-menu"
             ></textarea>
           </div>
         </div>
@@ -174,7 +179,13 @@ export default function PostItem() {
             <label htmlFor="category">Category</label>
           </div>
           <div className="col-75">
-            <select id="category" name="category" required ref={categoryRef}>
+            <select
+              id="category"
+              name="category"
+              required
+              ref={categoryRef}
+              className="post-item-select-menu"
+            >
               <option value="Electronics">Electronic</option>
               <option value="Toys">Toys</option>
               <option value="Garden">Garden</option>
@@ -192,6 +203,7 @@ export default function PostItem() {
 
           <div className="col-75">
             <RegionDropdown
+              className="post-item-select-menu"
               id="location"
               country={"United Kingdom"}
               value={location}
@@ -205,7 +217,13 @@ export default function PostItem() {
             <label htmlFor="charity">Charity</label>
           </div>
           <div className="col-75">
-            <select id="charity" name="charity" required ref={charityRef}>
+            <select
+              className="post-item-select-menu"
+              id="charity"
+              name="charity"
+              required
+              ref={charityRef}
+            >
               <option value="1">Age UK</option>
               <option value="2">Crisis</option>
               <option value="3<">British Red Cross</option>
@@ -224,9 +242,10 @@ export default function PostItem() {
               type="number"
               id="price"
               name="price"
-              placeholder="Item Price"
+              placeholder="Item price"
               required
               ref={priceRef}
+              className="post-item-select-menu"
             ></input>
           </div>
         </div>
@@ -239,7 +258,7 @@ export default function PostItem() {
               className="custom-file-input"
               type="file"
               id="image"
-              name="image"              
+              name="image"
               required
               ref={fileRef}
               accept="image/jpeg,image/x-png,image/gif"

@@ -22,9 +22,7 @@ export default class HowItWorks extends Component {
   render() {
     return (
       <CarouselProvider
-        // className="naturalSlideHeight"
         naturalSlideWidth={30}
-        // naturalSlideHeight={2}
         isIntrinsicHeight={true}
         totalSlides={9}
         touchEnabled={true}

@@ -27,7 +27,9 @@ class LandingPage extends Component {
   componentDidMount() {
     const { page } = this.state;
     return axios
-      .get(`https://charity-bay-be.herokuapp.com/api/items?p=${page}`)
+      .get(
+        `https://charity-bay-be.herokuapp.com/api/items?p=${page}&status=available`
+      )
       .then(({ data: { items, itemCount } }) => {
         this.setState({ items, itemCount, isLoading: false });
       });
@@ -43,7 +45,13 @@ class LandingPage extends Component {
     ) {
       return axios
         .get("https://charity-bay-be.herokuapp.com/api/items", {
-          params: { p: page, order: order, category, sortBy },
+          params: {
+            p: page,
+            order: order,
+            category,
+            sortBy,
+            status: "available",
+          },
         })
         .then(({ data: { items, itemCount } }) => {
           this.setState({ items, itemCount, isLoading: false });
@@ -92,6 +100,7 @@ class LandingPage extends Component {
               >
                 How it works
               </button>
+
               <button
                 onClick={() => {
                   navigate("/post_item");
@@ -123,7 +132,7 @@ class LandingPage extends Component {
                 onChange={this.handleSort}
               >
                 <option disabled value="">
-                  &nbsp;&nbsp;&nbsp;&nbsp;Sort by
+                  &nbsp;&nbsp;Sort by
                 </option>
                 <option value="thumbnail_img_ref">Date</option>
                 <option value="price">Price</option>
