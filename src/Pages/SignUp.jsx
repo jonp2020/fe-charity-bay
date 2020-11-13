@@ -156,7 +156,6 @@ export default function SignUp() {
             <input id="location" type="text" ref={locationRef} required></input>
           </div>
         </div>
-        {/* <div className="sign-up-verfiy-checkbox-container"> */}
         <div className="sign-up-age-verify-container">
           <div className="sign-up-age-verify">
             <label htmlFor="age-verification">
@@ -164,9 +163,6 @@ export default function SignUp() {
             </label>
             <input type="checkbox" ref={checkboxRef}></input>
           </div>
-          {/* <div className="sign-up-age-checkbox">
-            
-          </div> */}
         </div>
         <div className="sign-up-verify-role-container">
           <div className="sign-up-role-verify">
@@ -177,10 +173,7 @@ export default function SignUp() {
             </label>
             <input type="checkbox" ref={termsRef}></input>
           </div>
-          {/* <div className="sign-up-role-checkbox">
-          </div> */}
         </div>
-        {/* </div> */}
         <button className="sign-up-login-btn" disabled={loading} type="submit">
           Submit
         </button>

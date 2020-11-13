@@ -8,7 +8,7 @@ export default function Pagination({
   changePage,
 }) {
   return (
-    <div className="paggination">
+    <div className="pagination">
       <button
         className="p-button"
         disabled={atStart}

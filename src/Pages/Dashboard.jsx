@@ -115,9 +115,8 @@ export default function Dashboard() {
   return (
     <div>
       <div className="dashboard-bar">
-      <h1  className="dashboard-head">
-        Dashboard</h1>
-        </div>
+        <h1 className="dashboard-head">Dashboard</h1>
+      </div>
       <div className="dashboard-btn-container">
         <button
           className="dashboard-btns"
@@ -168,8 +167,7 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-
-                  <div key={item.item_id} className="dashboard-wrapper">
+                  <div key={item.item_id}>
                     <ItemsListCard item={item} />
                     <button
                       className="action-button"
@@ -179,14 +177,14 @@ export default function Dashboard() {
                         handleMail(item);
                       }}
                     >
-                    Confirm Purchase
+                      Confirm Purchase
                     </button>
                   </div>
                 );
               })}
             </ul>
           ) : (
-            <p className="noitem-detail">There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
       ) : list === 'purchased' ? (
@@ -199,7 +197,7 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-            <p className="noitem-detail">There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
       ) : list === 'available' ? (
@@ -218,14 +216,14 @@ export default function Dashboard() {
                         setChange('deleted');
                       }}
                     >
-                      Delete
+                      Remove this item from the sales list
                     </button>
                   </div>
                 );
               })}
             </ul>
           ) : (
-            <p className="noitem-detail">There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
       ) : list === 'sold' ? (
@@ -238,7 +236,7 @@ export default function Dashboard() {
               })}
             </ul>
           ) : (
-            <p className="noitem-detail">There are no items to display</p>
+            <p className="dashboard-msg">There are no items to display</p>
           )}
         </>
       ) : null}
@@ -254,4 +252,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
