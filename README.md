@@ -30,22 +30,22 @@ You'll need to have the following installed on your machine:
 $ git clone https://github.com/jonp2020/fe-charity-bay
 ```
 
-1. Navigate into the directory and install the required dependencies.
+2. Navigate into the directory and install the required dependencies.
 
 ```
 $ cd fe-charity-bay
 $ npm install
 ```
 
-1. Get the app running on your machine.
+3. Get the app running on your machine.
 
 ```
 $ npm start
 ```
 
-1. A tab will be opened in your browser at the address **localhost:3000**.
+4. A tab will be opened in your browser at the address **localhost:3000**.
 
-1. Enjoy!
+5. Enjoy!
 
 ## Built Using
 
