@@ -262,7 +262,7 @@
 }
 
 .itemsListTitle {
-  justify-self: center;
+  margin-left: 2.4rem;
 }
 
 .itemsListTitle p {
@@ -315,7 +315,6 @@
   .itemsList {
     grid-template-columns: 170px 170px;
     grid-template-rows: 1fr 0.7fr;
-    /* gap: 1rem; */
     margin: 0;
   }
 
