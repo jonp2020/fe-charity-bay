@@ -133,16 +133,13 @@ class LandingPage extends Component {
   };
 
   mouseOverCategoryUl = (e) => {
-    console.log("here in mouseover", e);
     if (e === "in-ul") {
-      console.log("here in mouse over cat if statment");
       this.setState({ ulHover: "showUl", hoveredHeader: "hoveredHeader" });
     }
   };
 
   mouseOutCategoryUl = (e) => {
     if (e === "out-ul") {
-      console.log("here in if out statement");
       this.setState((prevState) => ({
         categoryMenuOpen: !prevState.categoryMenuOpen,
         ulHover: "noShowUl",
@@ -152,7 +149,6 @@ class LandingPage extends Component {
   };
 
   toggleDropdownSortBy = (e) => {
-    console.log("here in sort by toggle", e);
     if (e === "click") {
       this.setState((prevState) => ({
         sortByMenuOpen: !prevState.sortByMenuOpen,
@@ -161,16 +157,13 @@ class LandingPage extends Component {
   };
 
   mouseOverSortByUl = (e) => {
-    console.log("here in mouseover", e);
     if (e === "in-ul") {
-      console.log("here in mouse over cat if statment");
       this.setState({ hoveredSortByHeader: "hoveredSortByHeader" });
     }
   };
 
   mouseOutSortByUl = (e) => {
     if (e === "out-ul") {
-      console.log("here in sort by if out statement");
       this.setState((prevState) => ({
         sortByMenuOpen: !prevState.sortByMenuOpen,
         hoveredSortByHeader: "nonHoveredSortByHeader",
@@ -179,7 +172,6 @@ class LandingPage extends Component {
   };
 
   toggleDropdownOrderBy = (e) => {
-    console.log("here in toggle order", e);
     if (e === "click") {
       this.setState((prevState) => ({
         orderByMenuOpen: !prevState.orderByMenuOpen,
@@ -188,16 +180,13 @@ class LandingPage extends Component {
   };
 
   mouseOverOrderByUl = (e) => {
-    console.log("here in mouseover", e);
     if (e === "in-ul") {
-      console.log("here in mouse over cat if statment");
       this.setState({ hoveredOrderByHeader: "hoveredOrderHeader" });
     }
   };
 
   mouseOutOrderByUl = (e) => {
     if (e === "out-ul") {
-      console.log("here in sort by if out statement");
       this.setState((prevState) => ({
         orderByMenuOpen: !prevState.orderByMenuOpen,
         hoveredOrderByHeader: "nonHoveredOrderHeader",
@@ -206,7 +195,6 @@ class LandingPage extends Component {
   };
 
   handleFilter = (e) => {
-    console.log(e);
     if (e !== "All") {
       this.setState({
         category: e,
@@ -225,7 +213,6 @@ class LandingPage extends Component {
   };
 
   handleSort = (e) => {
-    console.log("handlesort: ", e);
     if (e === "price") {
       this.setState({
         sortBy: e,
@@ -247,7 +234,6 @@ class LandingPage extends Component {
   };
 
   handleOrderAge = (e) => {
-    console.log(e);
     if (e === "Most recent") {
       this.setState({ orderByAgeOrValue: e, order: "desc" });
     }
@@ -257,7 +243,6 @@ class LandingPage extends Component {
   };
 
   handleOrderPrice = (e) => {
-    console.log(e);
     if (e === "Highest") {
       this.setState({ orderByAgeOrValue: e, order: "desc" });
     }
