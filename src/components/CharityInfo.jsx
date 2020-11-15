@@ -34,11 +34,13 @@ class CharityInfo extends Component {
     return (
       <section>
         <div className="charityCardWrapper">
-          <img
-            src={imageObj[this.props.charity.charity_id]}
-            alt={this.props.charity.name}
-            className="charity-image"
-          ></img>
+          <div className="charity-info-image">
+            <img
+              src={imageObj[this.props.charity.charity_id]}
+              alt={this.props.charity.name}
+              className="charity-image"
+            ></img>
+          </div>
           <button
             className="charityDisplay-btn"
             onClick={this.handleDescription}

@@ -11,11 +11,12 @@
     "axios": "^0.21.0",
     "firebase": "^8.0.1",
     "pure-react-carousel": "^1.27.6",
-    "react": "^17.0.1",
+    "react": "^16.14.0",
     "react-country-region-selector": "^3.0.1",
     "react-dom": "^17.0.1",
     "react-image-file-resizer": "^0.3.8",
     "react-scripts": "4.0.0",
+    "styled-components": "^4.4.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
