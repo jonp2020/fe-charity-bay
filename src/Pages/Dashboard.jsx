@@ -119,7 +119,7 @@ export default function Dashboard() {
       </div>
       <div className="dash-navigationButtons">
         <button
-          // className="dashboard-btns"
+          className="dashboard-btns"
           onClick={() => {
             setList("reserved");
           }}
@@ -127,7 +127,7 @@ export default function Dashboard() {
           Reserved
         </button>
         <button
-          // className="dashboard-btns"
+          className="dashboard-btns"
           onClick={() => {
             setList("purchased");
           }}
@@ -135,7 +135,7 @@ export default function Dashboard() {
           Purchased
         </button>
         <button
-          // className="dashboard-btns"
+          className="dashboard-btns"
           onClick={() => {
             setList("available");
           }}
@@ -143,7 +143,7 @@ export default function Dashboard() {
           For Sale
         </button>
         <button
-          // className="dashboard-btns"
+          className="dashboard-btns"
           onClick={() => {
             setList("sold");
           }}
@@ -167,7 +167,10 @@ export default function Dashboard() {
             <ul>
               {items.map((item) => {
                 return (
-                  <div key={item.item_id}>
+                  <div
+                    className="dashboard-individual-items"
+                    key={item.item_id}
+                  >
                     <ItemsListCard item={item} />
                     <button
                       className="action-button"
