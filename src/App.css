@@ -4,6 +4,7 @@
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
+
 .App {
   display: flex;
   flex-flow: column;
@@ -101,12 +102,14 @@
     margin: 0;
   }
 }
+
 .central-area {
   flex: 1;
 }
 .main-section-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .individualItem-container {
   font-family: "Roboto", sans-serif;
@@ -198,9 +201,6 @@
 }
 
 .wrapping {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 40px;
   margin-bottom: 1rem;
 }
 
@@ -252,13 +252,21 @@
 .itemsList {
   display: grid;
   grid-template-columns: 300px 300px 300px;
-  margin: 2rem 5rem 1rem 5rem;
+  /* margin: 2rem 5rem 1rem 5rem; */
+  margin: 1rem;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
 }
 
+@media only screen and (max-width: 700px) {
+  .itemsList {
+    grid-template-columns: 180px 180px 180px;
+  }
+}
+
 .itemsListPicture {
-  justify-self: end;
+  justify-self: center;
 }
 
 .itemsListTitle {
@@ -310,23 +318,34 @@
 .itemsListPrice button:focus {
   outline: none;
 }
+.dashboard-individual-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 @media only screen and (max-width: 600px) {
   .itemsList {
     grid-template-columns: 170px 170px;
     grid-template-rows: 1fr 0.1fr;
-    margin: 0rem 0 0rem 0rem;
+    justify-content: center;
+    gap: 0.8rem;
+
+    margin: 0.5rem 0;
+    width: 95%;
+    border: 1px solid #d4a373;
   }
 
   .itemsListPicture {
     justify-self: center;
-    margin: 0;
+    margin-top: 0.5rem;
   }
 
   .itemsListTitle {
     justify-self: start;
     align-self: start;
-    margin: 0;
+    margin: 0.5rem 0;
   }
 
   .itemsListTitle p {
@@ -335,15 +354,20 @@
 
   .itemsListPrice {
     display: flex;
-    margin: -1.5rem 0 1rem 0;
+    flex-direction: column;
+    margin: -0.5rem 0 1.5rem 1.3rem;
     grid-column: 2;
     align-self: start;
     justify-self: start;
   }
 
+  .itemsListPrice-amount {
+    margin: -2rem 0rem 0rem -1.5rem;
+  }
+
   .itemsListPrice button {
     align-self: start;
-    margin: 0 0 0 1rem;
+    margin: 0.5rem 1rem 1rem 0rem;
   }
   .thumbnailImageStyle {
     height: 120px;
@@ -357,12 +381,13 @@
   flex-wrap: wrap;
   margin: 1rem;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .navigationButtons button {
   margin: 0 0.8rem 0 0.8rem;
   padding: 12px;
+  font-size: 0.8rem;
   background-color: #faedcd;
   border: none;
   border-radius: 6px;
@@ -377,43 +402,41 @@
 .navigationButtons button:focus {
   outline: none;
 }
-
-.dash-navigationButtons {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 1rem;
-  justify-content: center;
-  align-items: center;
+.arrow {
+  display: inline;
 }
 
-.dash-navigationButtons button {
-  margin: 0 0.8rem 0 0.8rem;
-  padding: 12px;
+.nonHoveredHeader {
   background-color: #faedcd;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
-@media screen and (min-width: 601px) {
-  .dash-navigationButtons button {
-    width: 5rem;
-  }
-}
-
-.dash-navigationButtons button:hover {
+.hoveredHeader {
   background-color: #d4a373;
   color: #fff;
 }
 
-.dash-navigationButtons button:focus {
-  outline: none;
+.nonHoveredSortByHeader {
+  background-color: #faedcd;
+}
+
+.hoveredSortByHeader {
+  background-color: #d4a373;
+  color: #fff;
+}
+
+.nonHoveredOrderHeader {
+  background-color: #faedcd;
+}
+.hoveredOrderHeader {
+  background-color: #d4a373;
+  color: #fff;
 }
 
 .sort-data-items-wrapper {
   display: flex;
-  margin: 0.5rem;
+  /* margin: 0.5rem; */
   justify-content: space-around;
-  align-items: center;
+  align-content: center;
+  align-items: flex-start;
 }
 
 .sort-data-item {
@@ -452,12 +475,19 @@
   margin: 0 0.8rem;
 }
 
+@media screen and (max-width: 630px) {
+  .sort-data-items-wrapper {
+    margin: 0.8rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .navigationButtons {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
   }
+
   .dash-navigationButtons {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -470,7 +500,7 @@
   }
 
   .sort-data-items-wrapper {
-    margin: 0.4rem;
+    margin: 0.2rem;
   }
 }
 
@@ -534,30 +564,9 @@ footer {
 }
 
 /*post-page*/
-
 .post-item-header {
-  margin: 2rem;
+  margin: 1.5rem 1rem;
 }
-
-.post-item-select-menu {
-  color: #2b2a28;
-  font-family: "Roboto", sans-serif;
-}
-.post-item-select-menu::placeholder {
-  color: #2b2a28;
-  font-family: "Roboto", sans-serif;
-  font-size: 0.85rem;
-}
-.custom-file-input::placeholder {
-  color: #2b2a28;
-  font-family: "Roboto", sans-serif;
-  font-size: 0.85rem;
-}
-
-.file-upload-button {
-  background-color: red;
-}
-
 input[type="text"],
 select,
 textarea {
@@ -885,17 +894,30 @@ form {
   display: block;
 }
 
-.charityCardWrapper {
+.charityCardContainer {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+}
+
+.charityCardWrapper {
+  display: flex;
+  flex-direction: column;
+  /* gap: 2rem;
+  grid-template-columns: 1fr 1fr; */
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin-top: 2rem;
+}
+
+.charity-info-image {
+  align-items: center;
+  height: 186px;
+  width: 150px;
 }
 
 .showMoreText {
-  margin: -2.5rem 0 2.5rem 0;
+  margin: 2.5rem 0 2.5rem 0;
 }
 .carousel-wrapper {
   margin-top: -2rem;
@@ -908,6 +930,9 @@ form {
 }
 
 @media screen and (max-width: 600px) {
+  .charityCardContainer {
+    grid-template-columns: 1fr;
+  }
   .login-container {
     display: flex;
     flex-direction: column;
@@ -917,6 +942,9 @@ form {
   .charityCardWrapper {
     display: flex;
     flex-direction: column;
+    border: 2px solid #d4a373;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
   }
 
   .showMoreText {
@@ -952,16 +980,12 @@ form {
     margin: 0;
     grid-template-columns: 81% 1rem;
   }
-
-  .itemsListPrice {
-    font-size: 1rem;
-  }
 }
 
 .charityDisplay-btn {
   justify-self: start;
   align-self: center;
-  margin-top: -2rem;
+  margin-top: 0.2rem;
   background-color: #ccd5ae;
   border-radius: 12px;
   padding: 0.8rem;
@@ -1108,15 +1132,10 @@ form {
 
 .background-colour-carousel-odd {
   border-radius: 12px;
-  background-color: #ccd5ae;
+  background-color: rgb(250, 237, 205);
 }
 
 .background-colour-carousel-even {
   border-radius: 12px;
   background-color: #d4a373;
-}
-
-.fourth-and-eighth {
-  border-radius: 12px;
-  background-color: #e9edc9;
 }

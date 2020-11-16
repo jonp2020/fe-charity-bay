@@ -30,7 +30,7 @@ const ItemsListCard = (props) => {
         </p>
       </div>
 
-      <div className="itemsListPrice">
+      <div className="itemsListPrice itemsListPrice-amount">
         <Link
           className="itemsListPrice"
           to={`/item/${props.item.item_id}`}
@@ -39,11 +39,11 @@ const ItemsListCard = (props) => {
           <p> £{props.item.price}.00</p>
         </Link>
         <Link
-          className="itemsListPrice"
+          className="itemsListPrice itemsListPrice-btn"
           to={`/item/${props.item.item_id}`}
           item={props.item}
         >
-          <button>More info</button>
+          <button className="itemsListPrice-btn">More info</button>
         </Link>
       </div>
     </section>

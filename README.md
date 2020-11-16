@@ -54,4 +54,5 @@ $ npm start
 - React Image File Resizer
 - Material-UI
 - Pure React Carousel
+- Styled Components
 - Firebase Authentication
