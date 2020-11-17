@@ -29,6 +29,15 @@ const DropdownHeader = styled("div")`
     background-color: #d4a373;
     color: #fff;
   }
+  @media (max-width: 380px) {
+    margin: 0 0.2rem 0.1rem 0.2rem;
+    width: 5.1rem;
+  }
+  @media (max-width: 320px) {
+    margin: 0.4rem 5px 0 5px;
+    padding: 7px;
+    width: 5rem;
+  }
 `;
 
 const DropdownListOption = styled("ul")`
